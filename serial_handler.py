@@ -107,7 +107,7 @@ class SerialHandler:
     def is_connected(self) -> bool:
         """检查串口是否已连接"""
         return self.serial_connection is not None and self.serial_connection.is_open
-    
+
     def hardware_test(self, num_vibrators: int = 8, test_duration: float = 1.0) -> bool:
         """
         硬件测试：依次测试所有振动器
