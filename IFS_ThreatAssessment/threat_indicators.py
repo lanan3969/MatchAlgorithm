@@ -14,7 +14,7 @@
 import numpy as np
 import math
 from typing import Dict, Tuple
-from ifs_core import IFS, IFSConverter
+from .ifs_core import IFS, IFSConverter
 
 
 class ThreatIndicators:

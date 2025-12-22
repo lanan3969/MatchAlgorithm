@@ -8,8 +8,8 @@
 import numpy as np
 from typing import Dict, List, Tuple, Optional
 import time
-from ifs_core import IFS, IFSOperations
-from threat_indicators import ThreatIndicators
+from .ifs_core import IFS, IFSOperations
+from .threat_indicators import ThreatIndicators
 
 
 class IFSThreatEvaluator:

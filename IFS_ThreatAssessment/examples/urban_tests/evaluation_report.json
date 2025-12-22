@@ -1,0 +1,1763 @@
+{
+  "evaluation_summary": {
+    "total_scenarios": 30,
+    "type_statistics": {
+      "Type1_Sparse": {
+        "scenario_count": 10,
+        "avg_threat_score": 0.3952058190458966,
+        "threat_distribution": {
+          "critical": 7,
+          "high": 10,
+          "medium": 13,
+          "low": 0
+        }
+      },
+      "Type2_Dense": {
+        "scenario_count": 10,
+        "avg_threat_score": 0.3371842506452657,
+        "threat_distribution": {
+          "critical": 31,
+          "high": 130,
+          "medium": 133,
+          "low": 6
+        }
+      },
+      "Type3_Fast": {
+        "scenario_count": 10,
+        "avg_threat_score": 0.44200441478635943,
+        "threat_distribution": {
+          "critical": 69,
+          "high": 158,
+          "medium": 73,
+          "low": 0
+        }
+      }
+    },
+    "tactic_statistics": {
+      "包围": {
+        "scenario_count": 3,
+        "avg_threat_score": 0.48975290918229347,
+        "max_threat_score": 0.8691619437752434
+      },
+      "钳形攻势": {
+        "scenario_count": 3,
+        "avg_threat_score": 0.4996293717537103,
+        "max_threat_score": 0.8406238854572119
+      },
+      "伏击": {
+        "scenario_count": 3,
+        "avg_threat_score": 0.3680568474367378,
+        "max_threat_score": 0.7099658733664914
+      },
+      "撤退": {
+        "scenario_count": 3,
+        "avg_threat_score": 0.2616632107148382,
+        "max_threat_score": 0.6391439177228917
+      },
+      "正面突击": {
+        "scenario_count": 3,
+        "avg_threat_score": 0.4727646631365701,
+        "max_threat_score": 0.7479446544694336
+      },
+      "侧翼包抄": {
+        "scenario_count": 3,
+        "avg_threat_score": 0.4949354375311557,
+        "max_threat_score": 0.7373460335878029
+      },
+      "防御阵型": {
+        "scenario_count": 3,
+        "avg_threat_score": 0.339957318151431,
+        "max_threat_score": 0.8341045777408614
+      },
+      "游击骚扰": {
+        "scenario_count": 3,
+        "avg_threat_score": 0.2218091771150996,
+        "max_threat_score": 0.785361875755143
+      },
+      "追击": {
+        "scenario_count": 3,
+        "avg_threat_score": 0.48121921776554144,
+        "max_threat_score": 0.8252291562024606
+      },
+      "分散机动": {
+        "scenario_count": 3,
+        "avg_threat_score": 0.2848601288043611,
+        "max_threat_score": 0.614199370393471
+      }
+    },
+    "overall_statistics": {
+      "total_enemies": 630,
+      "avg_threat_score": 0.3898615463505784,
+      "median_threat_score": 0.37153777249146236,
+      "std_threat_score": 0.19235998892822867,
+      "threat_distribution": {
+        "critical": 107,
+        "high": 298,
+        "medium": 219,
+        "low": 6
+      }
+    }
+  },
+  "scenario_results": [
+    {
+      "image_id": "type1_encirclement_01",
+      "filename": "type1_tactic_encirclement_01.png",
+      "tactic": "包围",
+      "tactic_type": "encirclement",
+      "enemy_count": 3,
+      "top_threats": [
+        {
+          "enemy_id": 1,
+          "rank": 1,
+          "threat_score": 0.5569993924270142,
+          "threat_level": "high",
+          "distance": 15.125013346562191
+        },
+        {
+          "enemy_id": 3,
+          "rank": 2,
+          "threat_score": 0.5225740996180606,
+          "threat_level": "high",
+          "distance": 15.773946632342287
+        },
+        {
+          "enemy_id": 2,
+          "rank": 3,
+          "threat_score": 0.27436544801096124,
+          "threat_level": "medium",
+          "distance": 18.60402826659435
+        }
+      ],
+      "statistics": {
+        "total_enemies": 3,
+        "threat_level_distribution": {
+          "critical": 0,
+          "high": 2,
+          "medium": 1,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.45131298001867864,
+          "median": 0.5225740996180606,
+          "std": 0.12590763018700704,
+          "min": 0.27436544801096124,
+          "max": 0.5569993924270142
+        }
+      }
+    },
+    {
+      "image_id": "type1_pincer_02",
+      "filename": "type1_tactic_pincer_02.png",
+      "tactic": "钳形攻势",
+      "tactic_type": "pincer",
+      "enemy_count": 3,
+      "top_threats": [
+        {
+          "enemy_id": 1,
+          "rank": 1,
+          "threat_score": 0.6055441068822844,
+          "threat_level": "critical",
+          "distance": 20.94834345860015
+        },
+        {
+          "enemy_id": 2,
+          "rank": 2,
+          "threat_score": 0.5889705798811595,
+          "threat_level": "high",
+          "distance": 12.711077335719425
+        },
+        {
+          "enemy_id": 3,
+          "rank": 3,
+          "threat_score": 0.5618109148929306,
+          "threat_level": "high",
+          "distance": 20.342295338564874
+        }
+      ],
+      "statistics": {
+        "total_enemies": 3,
+        "threat_level_distribution": {
+          "critical": 1,
+          "high": 2,
+          "medium": 0,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.5854418672187914,
+          "median": 0.5889705798811595,
+          "std": 0.018027513790215017,
+          "min": 0.5618109148929306,
+          "max": 0.6055441068822844
+        }
+      }
+    },
+    {
+      "image_id": "type1_ambush_03",
+      "filename": "type1_tactic_ambush_03.png",
+      "tactic": "伏击",
+      "tactic_type": "ambush",
+      "enemy_count": 3,
+      "top_threats": [
+        {
+          "enemy_id": 3,
+          "rank": 1,
+          "threat_score": 0.5748242480336868,
+          "threat_level": "high",
+          "distance": 21.567726057356378
+        },
+        {
+          "enemy_id": 1,
+          "rank": 2,
+          "threat_score": 0.4533499010313663,
+          "threat_level": "high",
+          "distance": 15.033371687864625
+        },
+        {
+          "enemy_id": 2,
+          "rank": 3,
+          "threat_score": 0.1775696653604354,
+          "threat_level": "medium",
+          "distance": 37.614112178427895
+        }
+      ],
+      "statistics": {
+        "total_enemies": 3,
+        "threat_level_distribution": {
+          "critical": 0,
+          "high": 2,
+          "medium": 1,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.4019146048084961,
+          "median": 0.4533499010313663,
+          "std": 0.16620668485728962,
+          "min": 0.1775696653604354,
+          "max": 0.5748242480336868
+        }
+      }
+    },
+    {
+      "image_id": "type1_retreat_04",
+      "filename": "type1_tactic_retreat_04.png",
+      "tactic": "撤退",
+      "tactic_type": "retreat",
+      "enemy_count": 3,
+      "top_threats": [
+        {
+          "enemy_id": 1,
+          "rank": 1,
+          "threat_score": 0.3298607054477179,
+          "threat_level": "high",
+          "distance": 22.95270690019953
+        },
+        {
+          "enemy_id": 3,
+          "rank": 2,
+          "threat_score": 0.25677138722324716,
+          "threat_level": "medium",
+          "distance": 16.42188772965434
+        },
+        {
+          "enemy_id": 2,
+          "rank": 3,
+          "threat_score": 0.20155408169520234,
+          "threat_level": "medium",
+          "distance": 27.566852924581713
+        }
+      ],
+      "statistics": {
+        "total_enemies": 3,
+        "threat_level_distribution": {
+          "critical": 0,
+          "high": 1,
+          "medium": 2,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.26272872478872245,
+          "median": 0.25677138722324716,
+          "std": 0.05255007026854905,
+          "min": 0.20155408169520234,
+          "max": 0.3298607054477179
+        }
+      }
+    },
+    {
+      "image_id": "type1_frontal_assault_05",
+      "filename": "type1_tactic_frontal_assault_05.png",
+      "tactic": "正面突击",
+      "tactic_type": "frontal_assault",
+      "enemy_count": 3,
+      "top_threats": [
+        {
+          "enemy_id": 3,
+          "rank": 1,
+          "threat_score": 0.7198816686810043,
+          "threat_level": "critical",
+          "distance": 21.365269446210434
+        },
+        {
+          "enemy_id": 2,
+          "rank": 2,
+          "threat_score": 0.625232386241374,
+          "threat_level": "critical",
+          "distance": 20.228912316599256
+        },
+        {
+          "enemy_id": 1,
+          "rank": 3,
+          "threat_score": 0.29974199293312476,
+          "threat_level": "medium",
+          "distance": 37.4608495624002
+        }
+      ],
+      "statistics": {
+        "total_enemies": 3,
+        "threat_level_distribution": {
+          "critical": 2,
+          "high": 0,
+          "medium": 1,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.5482853492851677,
+          "median": 0.625232386241374,
+          "std": 0.17994438336448695,
+          "min": 0.29974199293312476,
+          "max": 0.7198816686810043
+        }
+      }
+    },
+    {
+      "image_id": "type1_flanking_06",
+      "filename": "type1_tactic_flanking_06.png",
+      "tactic": "侧翼包抄",
+      "tactic_type": "flanking",
+      "enemy_count": 3,
+      "top_threats": [
+        {
+          "enemy_id": 1,
+          "rank": 1,
+          "threat_score": 0.7133684261659298,
+          "threat_level": "critical",
+          "distance": 20.77435711392096
+        },
+        {
+          "enemy_id": 3,
+          "rank": 2,
+          "threat_score": 0.6660168678218643,
+          "threat_level": "critical",
+          "distance": 23.308526602913126
+        },
+        {
+          "enemy_id": 2,
+          "rank": 3,
+          "threat_score": 0.6118395272530216,
+          "threat_level": "critical",
+          "distance": 24.07622406156431
+        }
+      ],
+      "statistics": {
+        "total_enemies": 3,
+        "threat_level_distribution": {
+          "critical": 3,
+          "high": 0,
+          "medium": 0,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.6637416070802719,
+          "median": 0.6660168678218643,
+          "std": 0.04148021164522151,
+          "min": 0.6118395272530216,
+          "max": 0.7133684261659298
+        }
+      }
+    },
+    {
+      "image_id": "type1_defensive_07",
+      "filename": "type1_tactic_defensive_07.png",
+      "tactic": "防御阵型",
+      "tactic_type": "defensive",
+      "enemy_count": 3,
+      "top_threats": [
+        {
+          "enemy_id": 1,
+          "rank": 1,
+          "threat_score": 0.22186604515186675,
+          "threat_level": "medium",
+          "distance": 47.05067170412045
+        },
+        {
+          "enemy_id": 2,
+          "rank": 2,
+          "threat_score": 0.20923135071009136,
+          "threat_level": "medium",
+          "distance": 17.63458426102663
+        },
+        {
+          "enemy_id": 3,
+          "rank": 3,
+          "threat_score": 0.1191383750092197,
+          "threat_level": "medium",
+          "distance": 48.358004857574784
+        }
+      ],
+      "statistics": {
+        "total_enemies": 3,
+        "threat_level_distribution": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.18341192362372594,
+          "median": 0.20923135071009136,
+          "std": 0.0457400310780774,
+          "min": 0.1191383750092197,
+          "max": 0.22186604515186675
+        }
+      }
+    },
+    {
+      "image_id": "type1_guerrilla_08",
+      "filename": "type1_tactic_guerrilla_08.png",
+      "tactic": "游击骚扰",
+      "tactic_type": "guerrilla",
+      "enemy_count": 3,
+      "top_threats": [
+        {
+          "enemy_id": 3,
+          "rank": 1,
+          "threat_score": 0.21675265704987418,
+          "threat_level": "medium",
+          "distance": 50.11502605141645
+        },
+        {
+          "enemy_id": 1,
+          "rank": 2,
+          "threat_score": 0.2004227037620881,
+          "threat_level": "medium",
+          "distance": 43.627315714790605
+        },
+        {
+          "enemy_id": 2,
+          "rank": 3,
+          "threat_score": 0.02312038025689106,
+          "threat_level": "medium",
+          "distance": 54.93142033175567
+        }
+      ],
+      "statistics": {
+        "total_enemies": 3,
+        "threat_level_distribution": {
+          "critical": 0,
+          "high": 0,
+          "medium": 3,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.1467652470229511,
+          "median": 0.2004227037620881,
+          "std": 0.08768392726831555,
+          "min": 0.02312038025689106,
+          "max": 0.21675265704987418
+        }
+      }
+    },
+    {
+      "image_id": "type1_pursuit_09",
+      "filename": "type1_tactic_pursuit_09.png",
+      "tactic": "追击",
+      "tactic_type": "pursuit",
+      "enemy_count": 3,
+      "top_threats": [
+        {
+          "enemy_id": 1,
+          "rank": 1,
+          "threat_score": 0.6007453646606485,
+          "threat_level": "critical",
+          "distance": 23.73310032144963
+        },
+        {
+          "enemy_id": 3,
+          "rank": 2,
+          "threat_score": 0.599730956527919,
+          "threat_level": "high",
+          "distance": 20.59372333541133
+        },
+        {
+          "enemy_id": 2,
+          "rank": 3,
+          "threat_score": 0.21347826669019548,
+          "threat_level": "medium",
+          "distance": 19.653764489981626
+        }
+      ],
+      "statistics": {
+        "total_enemies": 3,
+        "threat_level_distribution": {
+          "critical": 1,
+          "high": 1,
+          "medium": 1,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.4713181959595876,
+          "median": 0.599730956527919,
+          "std": 0.18232083278330868,
+          "min": 0.21347826669019548,
+          "max": 0.6007453646606485
+        }
+      }
+    },
+    {
+      "image_id": "type1_dispersed_10",
+      "filename": "type1_tactic_dispersed_10.png",
+      "tactic": "分散机动",
+      "tactic_type": "dispersed",
+      "enemy_count": 3,
+      "top_threats": [
+        {
+          "enemy_id": 3,
+          "rank": 1,
+          "threat_score": 0.3064078688438963,
+          "threat_level": "high",
+          "distance": 16.044825983911355
+        },
+        {
+          "enemy_id": 1,
+          "rank": 2,
+          "threat_score": 0.30579644589985344,
+          "threat_level": "high",
+          "distance": 27.6904382799731
+        },
+        {
+          "enemy_id": 2,
+          "rank": 3,
+          "threat_score": 0.09920875721396705,
+          "threat_level": "medium",
+          "distance": 18.53940911819176
+        }
+      ],
+      "statistics": {
+        "total_enemies": 3,
+        "threat_level_distribution": {
+          "critical": 0,
+          "high": 2,
+          "medium": 1,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.23713769065257226,
+          "median": 0.30579644589985344,
+          "std": 0.09753080357554571,
+          "min": 0.09920875721396705,
+          "max": 0.3064078688438963
+        }
+      }
+    },
+    {
+      "image_id": "type2_encirclement_01",
+      "filename": "type2_tactic_encirclement_01.png",
+      "tactic": "包围",
+      "tactic_type": "encirclement",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 1,
+          "rank": 1,
+          "threat_score": 0.7439212099953824,
+          "threat_level": "critical",
+          "distance": 22.383427837427536
+        },
+        {
+          "enemy_id": 12,
+          "rank": 2,
+          "threat_score": 0.710632664575448,
+          "threat_level": "critical",
+          "distance": 21.55315131344766
+        },
+        {
+          "enemy_id": 25,
+          "rank": 3,
+          "threat_score": 0.7056333552401111,
+          "threat_level": "critical",
+          "distance": 21.264365065664247
+        },
+        {
+          "enemy_id": 13,
+          "rank": 4,
+          "threat_score": 0.686356612452039,
+          "threat_level": "critical",
+          "distance": 21.59868824178173
+        },
+        {
+          "enemy_id": 30,
+          "rank": 5,
+          "threat_score": 0.6402459749860584,
+          "threat_level": "critical",
+          "distance": 24.700481661507155
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 6,
+          "high": 20,
+          "medium": 4,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.4672254280462506,
+          "median": 0.4805579346018048,
+          "std": 0.14548923349097972,
+          "min": 0.23610897604879016,
+          "max": 0.7439212099953824
+        }
+      }
+    },
+    {
+      "image_id": "type2_pincer_02",
+      "filename": "type2_tactic_pincer_02.png",
+      "tactic": "钳形攻势",
+      "tactic_type": "pincer",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 6,
+          "rank": 1,
+          "threat_score": 0.6873664769013764,
+          "threat_level": "critical",
+          "distance": 21.704639893526014
+        },
+        {
+          "enemy_id": 1,
+          "rank": 2,
+          "threat_score": 0.6669329915321418,
+          "threat_level": "critical",
+          "distance": 21.081760738180822
+        },
+        {
+          "enemy_id": 23,
+          "rank": 3,
+          "threat_score": 0.655419860071952,
+          "threat_level": "critical",
+          "distance": 20.032811317090594
+        },
+        {
+          "enemy_id": 2,
+          "rank": 4,
+          "threat_score": 0.6391722428718317,
+          "threat_level": "critical",
+          "distance": 23.3269329582044
+        },
+        {
+          "enemy_id": 25,
+          "rank": 5,
+          "threat_score": 0.6123269762060595,
+          "threat_level": "critical",
+          "distance": 23.774194485284053
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 5,
+          "high": 14,
+          "medium": 11,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.39446981401289705,
+          "median": 0.37695042884220065,
+          "std": 0.17212215809737427,
+          "min": 0.10672582698093586,
+          "max": 0.6873664769013764
+        }
+      }
+    },
+    {
+      "image_id": "type2_ambush_03",
+      "filename": "type2_tactic_ambush_03.png",
+      "tactic": "伏击",
+      "tactic_type": "ambush",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 4,
+          "rank": 1,
+          "threat_score": 0.5729907975785464,
+          "threat_level": "high",
+          "distance": 24.337326175017985
+        },
+        {
+          "enemy_id": 26,
+          "rank": 2,
+          "threat_score": 0.5455838117020575,
+          "threat_level": "high",
+          "distance": 21.809919069192507
+        },
+        {
+          "enemy_id": 9,
+          "rank": 3,
+          "threat_score": 0.4860876776586221,
+          "threat_level": "high",
+          "distance": 11.91687542212569
+        },
+        {
+          "enemy_id": 22,
+          "rank": 4,
+          "threat_score": 0.47873102192860295,
+          "threat_level": "high",
+          "distance": 26.382927591714253
+        },
+        {
+          "enemy_id": 29,
+          "rank": 5,
+          "threat_score": 0.4578547841094922,
+          "threat_level": "high",
+          "distance": 25.316865409227304
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 0,
+          "high": 11,
+          "medium": 19,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.2741439556573513,
+          "median": 0.24872548249279441,
+          "std": 0.14201608175316527,
+          "min": 0.04698889146101731,
+          "max": 0.5729907975785464
+        }
+      }
+    },
+    {
+      "image_id": "type2_retreat_04",
+      "filename": "type2_tactic_retreat_04.png",
+      "tactic": "撤退",
+      "tactic_type": "retreat",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 29,
+          "rank": 1,
+          "threat_score": 0.586866157982087,
+          "threat_level": "high",
+          "distance": 21.820931206828675
+        },
+        {
+          "enemy_id": 28,
+          "rank": 2,
+          "threat_score": 0.5028767524991833,
+          "threat_level": "high",
+          "distance": 12.764532438466208
+        },
+        {
+          "enemy_id": 12,
+          "rank": 3,
+          "threat_score": 0.49928409168856747,
+          "threat_level": "high",
+          "distance": 20.23546053283319
+        },
+        {
+          "enemy_id": 7,
+          "rank": 4,
+          "threat_score": 0.4689317805759828,
+          "threat_level": "high",
+          "distance": 24.086101390972768
+        },
+        {
+          "enemy_id": 1,
+          "rank": 5,
+          "threat_score": 0.464353095556374,
+          "threat_level": "high",
+          "distance": 24.120305209015395
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 0,
+          "high": 11,
+          "medium": 17,
+          "low": 2
+        },
+        "score_statistics": {
+          "mean": 0.23287711048183482,
+          "median": 0.21276594308711821,
+          "std": 0.17371354065512168,
+          "min": -0.095876811138078,
+          "max": 0.586866157982087
+        }
+      }
+    },
+    {
+      "image_id": "type2_frontal_assault_05",
+      "filename": "type2_tactic_frontal_assault_05.png",
+      "tactic": "正面突击",
+      "tactic_type": "frontal_assault",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 13,
+          "rank": 1,
+          "threat_score": 0.7171063421178827,
+          "threat_level": "critical",
+          "distance": 20.52257113031109
+        },
+        {
+          "enemy_id": 28,
+          "rank": 2,
+          "threat_score": 0.7028069368231572,
+          "threat_level": "critical",
+          "distance": 23.04695724349955
+        },
+        {
+          "enemy_id": 7,
+          "rank": 3,
+          "threat_score": 0.6177965435752545,
+          "threat_level": "critical",
+          "distance": 21.202231882058605
+        },
+        {
+          "enemy_id": 9,
+          "rank": 4,
+          "threat_score": 0.598637270769204,
+          "threat_level": "high",
+          "distance": 14.310056029420826
+        },
+        {
+          "enemy_id": 18,
+          "rank": 5,
+          "threat_score": 0.5389808156756652,
+          "threat_level": "high",
+          "distance": 13.25024453828915
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 3,
+          "high": 15,
+          "medium": 12,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.36661683671511247,
+          "median": 0.34355322055763315,
+          "std": 0.1536147833452578,
+          "min": 0.12537266525698898,
+          "max": 0.7171063421178827
+        }
+      }
+    },
+    {
+      "image_id": "type2_flanking_06",
+      "filename": "type2_tactic_flanking_06.png",
+      "tactic": "侧翼包抄",
+      "tactic_type": "flanking",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 4,
+          "rank": 1,
+          "threat_score": 0.6274679633824247,
+          "threat_level": "critical",
+          "distance": 10.045350922778669
+        },
+        {
+          "enemy_id": 11,
+          "rank": 2,
+          "threat_score": 0.609087062802046,
+          "threat_level": "critical",
+          "distance": 23.578271997608976
+        },
+        {
+          "enemy_id": 16,
+          "rank": 3,
+          "threat_score": 0.5667243682874379,
+          "threat_level": "high",
+          "distance": 25.438552441867486
+        },
+        {
+          "enemy_id": 15,
+          "rank": 4,
+          "threat_score": 0.5564881598135816,
+          "threat_level": "high",
+          "distance": 22.402570912803686
+        },
+        {
+          "enemy_id": 7,
+          "rank": 5,
+          "threat_score": 0.5526812292897797,
+          "threat_level": "high",
+          "distance": 11.849571648368112
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 2,
+          "high": 17,
+          "medium": 11,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.3810729033031704,
+          "median": 0.36190119535133913,
+          "std": 0.13834183390981125,
+          "min": 0.12354797104894422,
+          "max": 0.6274679633824247
+        }
+      }
+    },
+    {
+      "image_id": "type2_defensive_07",
+      "filename": "type2_tactic_defensive_07.png",
+      "tactic": "防御阵型",
+      "tactic_type": "defensive",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 14,
+          "rank": 1,
+          "threat_score": 0.623479892167487,
+          "threat_level": "critical",
+          "distance": 23.627202388817707
+        },
+        {
+          "enemy_id": 2,
+          "rank": 2,
+          "threat_score": 0.6180398942339931,
+          "threat_level": "critical",
+          "distance": 12.999916637049155
+        },
+        {
+          "enemy_id": 19,
+          "rank": 3,
+          "threat_score": 0.6169756456482831,
+          "threat_level": "critical",
+          "distance": 12.00685260601764
+        },
+        {
+          "enemy_id": 3,
+          "rank": 4,
+          "threat_score": 0.6044242488164946,
+          "threat_level": "critical",
+          "distance": 24.357797490437274
+        },
+        {
+          "enemy_id": 23,
+          "rank": 5,
+          "threat_score": 0.5879125194629324,
+          "threat_level": "high",
+          "distance": 20.334686446551167
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 4,
+          "high": 10,
+          "medium": 16,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.35404759500522487,
+          "median": 0.2907107648417363,
+          "std": 0.16895465055773343,
+          "min": 0.10022183938367629,
+          "max": 0.623479892167487
+        }
+      }
+    },
+    {
+      "image_id": "type2_guerrilla_08",
+      "filename": "type2_tactic_guerrilla_08.png",
+      "tactic": "游击骚扰",
+      "tactic_type": "guerrilla",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 7,
+          "rank": 1,
+          "threat_score": 0.6604731005265656,
+          "threat_level": "critical",
+          "distance": 21.20537469843583
+        },
+        {
+          "enemy_id": 23,
+          "rank": 2,
+          "threat_score": 0.5078928583985469,
+          "threat_level": "high",
+          "distance": 25.53144415354154
+        },
+        {
+          "enemy_id": 11,
+          "rank": 3,
+          "threat_score": 0.5028313146962503,
+          "threat_level": "high",
+          "distance": 11.795409364610112
+        },
+        {
+          "enemy_id": 13,
+          "rank": 4,
+          "threat_score": 0.3280085752399979,
+          "threat_level": "high",
+          "distance": 26.195380250112326
+        },
+        {
+          "enemy_id": 26,
+          "rank": 5,
+          "threat_score": 0.26079695720195695,
+          "threat_level": "medium",
+          "distance": 35.74356531275542
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 1,
+          "high": 3,
+          "medium": 24,
+          "low": 2
+        },
+        "score_statistics": {
+          "mean": 0.17963401149191144,
+          "median": 0.16335302830196685,
+          "std": 0.1573299851294349,
+          "min": -0.08670938324545935,
+          "max": 0.6604731005265656
+        }
+      }
+    },
+    {
+      "image_id": "type2_pursuit_09",
+      "filename": "type2_tactic_pursuit_09.png",
+      "tactic": "追击",
+      "tactic_type": "pursuit",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 6,
+          "rank": 1,
+          "threat_score": 0.7097939065152663,
+          "threat_level": "critical",
+          "distance": 20.647532778683704
+        },
+        {
+          "enemy_id": 10,
+          "rank": 2,
+          "threat_score": 0.6851381181016014,
+          "threat_level": "critical",
+          "distance": 13.077033153386799
+        },
+        {
+          "enemy_id": 2,
+          "rank": 3,
+          "threat_score": 0.6848546986135535,
+          "threat_level": "critical",
+          "distance": 21.520027390613986
+        },
+        {
+          "enemy_id": 20,
+          "rank": 4,
+          "threat_score": 0.683414525558011,
+          "threat_level": "critical",
+          "distance": 21.232075348684763
+        },
+        {
+          "enemy_id": 1,
+          "rank": 5,
+          "threat_score": 0.6628137658687818,
+          "threat_level": "critical",
+          "distance": 22.251406453070445
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 10,
+          "high": 14,
+          "medium": 6,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.46385813208090115,
+          "median": 0.4476951279218303,
+          "std": 0.16338818438665514,
+          "min": 0.16918806657127233,
+          "max": 0.7097939065152663
+        }
+      }
+    },
+    {
+      "image_id": "type2_dispersed_10",
+      "filename": "type2_tactic_dispersed_10.png",
+      "tactic": "分散机动",
+      "tactic_type": "dispersed",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 3,
+          "rank": 1,
+          "threat_score": 0.5359847990926229,
+          "threat_level": "high",
+          "distance": 23.045014453992348
+        },
+        {
+          "enemy_id": 27,
+          "rank": 2,
+          "threat_score": 0.5330350217015453,
+          "threat_level": "high",
+          "distance": 20.315092353780017
+        },
+        {
+          "enemy_id": 30,
+          "rank": 3,
+          "threat_score": 0.511986246960729,
+          "threat_level": "high",
+          "distance": 5.179197835063729
+        },
+        {
+          "enemy_id": 12,
+          "rank": 4,
+          "threat_score": 0.5117466153243933,
+          "threat_level": "high",
+          "distance": 24.100187325271037
+        },
+        {
+          "enemy_id": 28,
+          "rank": 5,
+          "threat_score": 0.5027260565556309,
+          "threat_level": "high",
+          "distance": 2.3613710425896155
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 0,
+          "high": 15,
+          "medium": 13,
+          "low": 2
+        },
+        "score_statistics": {
+          "mean": 0.257896719658003,
+          "median": 0.2700465266634043,
+          "std": 0.18715186831311592,
+          "min": -0.08134032027350224,
+          "max": 0.5359847990926229
+        }
+      }
+    },
+    {
+      "image_id": "type3_encirclement_01",
+      "filename": "type3_tactic_encirclement_01.png",
+      "tactic": "包围",
+      "tactic_type": "encirclement",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 14,
+          "rank": 1,
+          "threat_score": 0.8691619437752434,
+          "threat_level": "critical",
+          "distance": 20.37783358580213
+        },
+        {
+          "enemy_id": 6,
+          "rank": 2,
+          "threat_score": 0.8032723335830936,
+          "threat_level": "critical",
+          "distance": 22.841640374839866
+        },
+        {
+          "enemy_id": 9,
+          "rank": 3,
+          "threat_score": 0.7387512637868489,
+          "threat_level": "critical",
+          "distance": 13.378629743615058
+        },
+        {
+          "enemy_id": 25,
+          "rank": 4,
+          "threat_score": 0.732337497651741,
+          "threat_level": "critical",
+          "distance": 21.11888989166101
+        },
+        {
+          "enemy_id": 13,
+          "rank": 5,
+          "threat_score": 0.7322436591361525,
+          "threat_level": "critical",
+          "distance": 11.580366821140341
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 12,
+          "high": 17,
+          "medium": 1,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.5507203194819511,
+          "median": 0.5685568550085474,
+          "std": 0.16672726626673334,
+          "min": 0.17443318533994373,
+          "max": 0.8691619437752434
+        }
+      }
+    },
+    {
+      "image_id": "type3_pincer_02",
+      "filename": "type3_tactic_pincer_02.png",
+      "tactic": "钳形攻势",
+      "tactic_type": "pincer",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 4,
+          "rank": 1,
+          "threat_score": 0.8406238854572119,
+          "threat_level": "critical",
+          "distance": 21.975549689677194
+        },
+        {
+          "enemy_id": 6,
+          "rank": 2,
+          "threat_score": 0.7407694568245756,
+          "threat_level": "critical",
+          "distance": 20.742621325523977
+        },
+        {
+          "enemy_id": 25,
+          "rank": 3,
+          "threat_score": 0.7339622478271026,
+          "threat_level": "critical",
+          "distance": 21.222860581155842
+        },
+        {
+          "enemy_id": 21,
+          "rank": 4,
+          "threat_score": 0.7067831129387875,
+          "threat_level": "critical",
+          "distance": 5.405851446065724
+        },
+        {
+          "enemy_id": 28,
+          "rank": 5,
+          "threat_score": 0.6553079818435936,
+          "threat_level": "critical",
+          "distance": 23.365021518997626
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 11,
+          "high": 16,
+          "medium": 3,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.5189764340294425,
+          "median": 0.556610474321114,
+          "std": 0.16154509410463808,
+          "min": 0.2028136434474787,
+          "max": 0.8406238854572119
+        }
+      }
+    },
+    {
+      "image_id": "type3_ambush_03",
+      "filename": "type3_tactic_ambush_03.png",
+      "tactic": "伏击",
+      "tactic_type": "ambush",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 4,
+          "rank": 1,
+          "threat_score": 0.7099658733664914,
+          "threat_level": "critical",
+          "distance": 20.003449934420516
+        },
+        {
+          "enemy_id": 7,
+          "rank": 2,
+          "threat_score": 0.6559706847931888,
+          "threat_level": "critical",
+          "distance": 24.565404061057954
+        },
+        {
+          "enemy_id": 23,
+          "rank": 3,
+          "threat_score": 0.6451063696995056,
+          "threat_level": "critical",
+          "distance": 24.687703790965564
+        },
+        {
+          "enemy_id": 13,
+          "rank": 4,
+          "threat_score": 0.6324715521633788,
+          "threat_level": "critical",
+          "distance": 20.34189650492195
+        },
+        {
+          "enemy_id": 18,
+          "rank": 5,
+          "threat_score": 0.6076164756026077,
+          "threat_level": "critical",
+          "distance": 23.106734803562986
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 6,
+          "high": 17,
+          "medium": 7,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.428111981844366,
+          "median": 0.371372604347854,
+          "std": 0.15102272500856792,
+          "min": 0.2088038456573421,
+          "max": 0.7099658733664914
+        }
+      }
+    },
+    {
+      "image_id": "type3_retreat_04",
+      "filename": "type3_tactic_retreat_04.png",
+      "tactic": "撤退",
+      "tactic_type": "retreat",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 1,
+          "rank": 1,
+          "threat_score": 0.6391439177228917,
+          "threat_level": "critical",
+          "distance": 23.21362966995303
+        },
+        {
+          "enemy_id": 12,
+          "rank": 2,
+          "threat_score": 0.6183027152043354,
+          "threat_level": "critical",
+          "distance": 3.39247282986437
+        },
+        {
+          "enemy_id": 20,
+          "rank": 3,
+          "threat_score": 0.6060821406111578,
+          "threat_level": "critical",
+          "distance": 20.70148213435698
+        },
+        {
+          "enemy_id": 4,
+          "rank": 4,
+          "threat_score": 0.5814992528425647,
+          "threat_level": "high",
+          "distance": 23.96646117696178
+        },
+        {
+          "enemy_id": 2,
+          "rank": 5,
+          "threat_score": 0.5612982677491831,
+          "threat_level": "high",
+          "distance": 20.439190335559843
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 3,
+          "high": 9,
+          "medium": 18,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.2893837968739575,
+          "median": 0.25800362173372526,
+          "std": 0.18329999821505902,
+          "min": 0.019189098274362104,
+          "max": 0.6391439177228917
+        }
+      }
+    },
+    {
+      "image_id": "type3_frontal_assault_05",
+      "filename": "type3_tactic_frontal_assault_05.png",
+      "tactic": "正面突击",
+      "tactic_type": "frontal_assault",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 11,
+          "rank": 1,
+          "threat_score": 0.7479446544694336,
+          "threat_level": "critical",
+          "distance": 20.071310850572786
+        },
+        {
+          "enemy_id": 7,
+          "rank": 2,
+          "threat_score": 0.7293086905471078,
+          "threat_level": "critical",
+          "distance": 10.04820368539798
+        },
+        {
+          "enemy_id": 13,
+          "rank": 3,
+          "threat_score": 0.7048140475606514,
+          "threat_level": "critical",
+          "distance": 24.590400016246722
+        },
+        {
+          "enemy_id": 12,
+          "rank": 4,
+          "threat_score": 0.6892756504564244,
+          "threat_level": "critical",
+          "distance": 22.238239632881413
+        },
+        {
+          "enemy_id": 1,
+          "rank": 5,
+          "threat_score": 0.6634478981982896,
+          "threat_level": "critical",
+          "distance": 13.503698751117053
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 11,
+          "high": 16,
+          "medium": 3,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.5033918034094302,
+          "median": 0.5187175459479146,
+          "std": 0.14691127797310674,
+          "min": 0.2589216104781945,
+          "max": 0.7479446544694336
+        }
+      }
+    },
+    {
+      "image_id": "type3_flanking_06",
+      "filename": "type3_tactic_flanking_06.png",
+      "tactic": "侧翼包抄",
+      "tactic_type": "flanking",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 1,
+          "rank": 1,
+          "threat_score": 0.7373460335878029,
+          "threat_level": "critical",
+          "distance": 21.548055272541585
+        },
+        {
+          "enemy_id": 19,
+          "rank": 2,
+          "threat_score": 0.7322890076590671,
+          "threat_level": "critical",
+          "distance": 21.79799579763871
+        },
+        {
+          "enemy_id": 13,
+          "rank": 3,
+          "threat_score": 0.6284425063497923,
+          "threat_level": "critical",
+          "distance": 13.49820530439651
+        },
+        {
+          "enemy_id": 8,
+          "rank": 4,
+          "threat_score": 0.5937259103869965,
+          "threat_level": "high",
+          "distance": 10.896596285602898
+        },
+        {
+          "enemy_id": 25,
+          "rank": 5,
+          "threat_score": 0.581472828922752,
+          "threat_level": "high",
+          "distance": 14.279460281925587
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 3,
+          "high": 23,
+          "medium": 4,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.4399918022100248,
+          "median": 0.41820211129170837,
+          "std": 0.13313549813307404,
+          "min": 0.14587666905787428,
+          "max": 0.7373460335878029
+        }
+      }
+    },
+    {
+      "image_id": "type3_defensive_07",
+      "filename": "type3_tactic_defensive_07.png",
+      "tactic": "防御阵型",
+      "tactic_type": "defensive",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 5,
+          "rank": 1,
+          "threat_score": 0.8341045777408614,
+          "threat_level": "critical",
+          "distance": 22.837715686031277
+        },
+        {
+          "enemy_id": 23,
+          "rank": 2,
+          "threat_score": 0.8263452451243861,
+          "threat_level": "critical",
+          "distance": 10.211497376761306
+        },
+        {
+          "enemy_id": 22,
+          "rank": 3,
+          "threat_score": 0.7846546480791998,
+          "threat_level": "critical",
+          "distance": 20.842773702830257
+        },
+        {
+          "enemy_id": 18,
+          "rank": 4,
+          "threat_score": 0.7161150356067288,
+          "threat_level": "critical",
+          "distance": 13.534529619003239
+        },
+        {
+          "enemy_id": 6,
+          "rank": 5,
+          "threat_score": 0.671015942121257,
+          "threat_level": "critical",
+          "distance": 22.702623982048067
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 8,
+          "high": 16,
+          "medium": 6,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.48241243582534216,
+          "median": 0.46793557002703595,
+          "std": 0.1816078012455932,
+          "min": 0.14638958452018747,
+          "max": 0.8341045777408614
+        }
+      }
+    },
+    {
+      "image_id": "type3_guerrilla_08",
+      "filename": "type3_tactic_guerrilla_08.png",
+      "tactic": "游击骚扰",
+      "tactic_type": "guerrilla",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 18,
+          "rank": 1,
+          "threat_score": 0.785361875755143,
+          "threat_level": "critical",
+          "distance": 22.805964207430726
+        },
+        {
+          "enemy_id": 15,
+          "rank": 2,
+          "threat_score": 0.6411624045165251,
+          "threat_level": "critical",
+          "distance": 15.00695118081468
+        },
+        {
+          "enemy_id": 22,
+          "rank": 3,
+          "threat_score": 0.6234379252370235,
+          "threat_level": "critical",
+          "distance": 20.586210817692805
+        },
+        {
+          "enemy_id": 16,
+          "rank": 4,
+          "threat_score": 0.5749826630292136,
+          "threat_level": "high",
+          "distance": 25.64186650574426
+        },
+        {
+          "enemy_id": 5,
+          "rank": 5,
+          "threat_score": 0.5633699892809781,
+          "threat_level": "high",
+          "distance": 25.84316478574288
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 3,
+          "high": 13,
+          "medium": 14,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.33902827283043624,
+          "median": 0.3188117116012178,
+          "std": 0.168853235641684,
+          "min": 0.0950903051925121,
+          "max": 0.785361875755143
+        }
+      }
+    },
+    {
+      "image_id": "type3_pursuit_09",
+      "filename": "type3_tactic_pursuit_09.png",
+      "tactic": "追击",
+      "tactic_type": "pursuit",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 12,
+          "rank": 1,
+          "threat_score": 0.8252291562024606,
+          "threat_level": "critical",
+          "distance": 12.300289579147822
+        },
+        {
+          "enemy_id": 30,
+          "rank": 2,
+          "threat_score": 0.8023600178802862,
+          "threat_level": "critical",
+          "distance": 21.76057196655674
+        },
+        {
+          "enemy_id": 4,
+          "rank": 3,
+          "threat_score": 0.7494984566353685,
+          "threat_level": "critical",
+          "distance": 20.022453665100972
+        },
+        {
+          "enemy_id": 3,
+          "rank": 4,
+          "threat_score": 0.7435183378926868,
+          "threat_level": "critical",
+          "distance": 21.404903155682746
+        },
+        {
+          "enemy_id": 8,
+          "rank": 5,
+          "threat_score": 0.7361446291476296,
+          "threat_level": "critical",
+          "distance": 22.11254507777328
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 11,
+          "high": 14,
+          "medium": 5,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.5084813252561357,
+          "median": 0.544139326599488,
+          "std": 0.1962039813630096,
+          "min": 0.12646063681708014,
+          "max": 0.8252291562024606
+        }
+      }
+    },
+    {
+      "image_id": "type3_dispersed_10",
+      "filename": "type3_tactic_dispersed_10.png",
+      "tactic": "分散机动",
+      "tactic_type": "dispersed",
+      "enemy_count": 30,
+      "top_threats": [
+        {
+          "enemy_id": 5,
+          "rank": 1,
+          "threat_score": 0.614199370393471,
+          "threat_level": "critical",
+          "distance": 20.327607863375924
+        },
+        {
+          "enemy_id": 13,
+          "rank": 2,
+          "threat_score": 0.5525770053492891,
+          "threat_level": "high",
+          "distance": 22.704531521038568
+        },
+        {
+          "enemy_id": 23,
+          "rank": 3,
+          "threat_score": 0.5464976066287063,
+          "threat_level": "high",
+          "distance": 20.9924880568448
+        },
+        {
+          "enemy_id": 9,
+          "rank": 4,
+          "threat_score": 0.5399751347509949,
+          "threat_level": "high",
+          "distance": 21.791038330166913
+        },
+        {
+          "enemy_id": 30,
+          "rank": 5,
+          "threat_score": 0.5340591787160425,
+          "threat_level": "high",
+          "distance": 12.743134717780581
+        }
+      ],
+      "statistics": {
+        "total_enemies": 30,
+        "threat_level_distribution": {
+          "critical": 1,
+          "high": 17,
+          "medium": 12,
+          "low": 0
+        },
+        "score_statistics": {
+          "mean": 0.35954597610250816,
+          "median": 0.36096867012845946,
+          "std": 0.13248264282693872,
+          "min": 0.1525096701149956,
+          "max": 0.614199370393471
+        }
+      }
+    }
+  ]
+}

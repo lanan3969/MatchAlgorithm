@@ -10,28 +10,62 @@ from dotenv import load_dotenv
 # 加载.env文件中的环境变量
 load_dotenv()
 
+# 导入配置
+from config import (
+    ENABLE_IFS_ASSESSMENT,
+    ENABLE_GPT_ASSESSMENT,
+    ENABLE_TERRAIN_ANALYSIS,
+    TERRAIN_DATA_PATH,
+    THREAT_ASSESSMENT_STRATEGY,
+    IFS_LOG_LEVEL,
+    OPENAI_API_KEY,
+    OPENAI_BASE_URL
+)
+
 logger = logging.getLogger(__name__)
 
+# ============================================================================
+# 初始化IFS威胁评估器
+# ============================================================================
+ifs_adapter = None
+if ENABLE_IFS_ASSESSMENT:
+    try:
+        from threat_analyzer_ifs import IFSThreatAnalyzerAdapter, log_ifs_details
+        
+        # 根据配置决定是否加载地形数据
+        terrain_path = None
+        if ENABLE_TERRAIN_ANALYSIS and os.path.exists(TERRAIN_DATA_PATH):
+            terrain_path = TERRAIN_DATA_PATH
+        
+        ifs_adapter = IFSThreatAnalyzerAdapter(terrain_path)
+        logger.info("✓ IFS Threat Analyzer initialized")
+    except Exception as e:
+        logger.error(f"Failed to initialize IFS adapter: {e}")
+        ifs_adapter = None
+
+# ============================================================================
 # 初始化OpenAI客户端
+# ============================================================================
 client = None
-try:
-    api_key = os.environ.get("OPENAI_API_KEY")
-    base_url = os.environ.get("OPENAI_BASE_URL", "https://api.chatanywhere.tech/v1/")
-    
-    if api_key:
-        client = OpenAI(
-            api_key=api_key,
-            base_url=base_url
-        )
-        logger.info(f"OpenAI client initialized successfully with base_url: {base_url}")
-    else:
-        logger.warning("OPENAI_API_KEY not found in environment variables, will use fallback algorithm")
-except Exception as e:
-    logger.error(f"Failed to initialize OpenAI client: {e}")
-    client = None
+if ENABLE_GPT_ASSESSMENT:
+    try:
+        api_key = OPENAI_API_KEY
+        base_url = OPENAI_BASE_URL
+        
+        if api_key:
+            client = OpenAI(
+                api_key=api_key,
+                base_url=base_url
+            )
+            logger.info(f"✓ OpenAI client initialized with base_url: {base_url}")
+        else:
+            logger.warning("OPENAI_API_KEY not found, GPT assessment disabled")
+    except Exception as e:
+        logger.error(f"Failed to initialize OpenAI client: {e}")
+        client = None
 
 
-def calculate_threat_score(target: Target, player_pos) -> float:
+def calculate_threat_score_simple(target: Target, player_pos) -> float:
     """
     计算单个目标的威胁度
     
@@ -168,9 +202,9 @@ def find_most_threatening_target_with_gpt(game_data: GameData) -> Optional[Targe
         return None
 
 
-def find_most_threatening_target(game_data: GameData) -> Optional[Target]:
+def find_most_threatening_target_simple(game_data: GameData) -> Optional[Target]:
     """
-    找出最有威胁的目标（优先使用GPT-4o，失败则使用算法）
+    使用简单算法找出最有威胁的目标（保底方案）
     
     Args:
         game_data: 游戏数据对象
@@ -182,25 +216,19 @@ def find_most_threatening_target(game_data: GameData) -> Optional[Target]:
         logger.warning("No targets found in game data")
         return None
     
-    # 首先尝试使用GPT-4o
-    gpt_result = find_most_threatening_target_with_gpt(game_data)
-    if gpt_result:
-        return gpt_result
-    
-    # GPT失败时使用传统算法作为备用
-    logger.info("Using fallback algorithm for threat assessment")
+    logger.info("Using simple algorithm for threat assessment")
     max_threat_score = -1
     most_threatening = None
     
     for target in game_data.targets:
-        threat_score = calculate_threat_score(target, game_data.playerPosition)
+        threat_score = calculate_threat_score_simple(target, game_data.playerPosition)
         if threat_score > max_threat_score:
             max_threat_score = threat_score
             most_threatening = target
     
     if most_threatening:
         logger.info(
-            f"[Algorithm] Most threatening target: ID={most_threatening.id}, "
+            f"[Simple Algorithm] Most threatening target: ID={most_threatening.id}, "
             f"Type={most_threatening.type}, "
             f"Distance={most_threatening.distance:.2f}, "
             f"Angle={most_threatening.angle:.2f}, "
@@ -208,4 +236,106 @@ def find_most_threatening_target(game_data: GameData) -> Optional[Target]:
         )
     
     return most_threatening
+
+
+def find_most_threatening_target_with_ifs(game_data: GameData) -> Optional[Target]:
+    """
+    使用IFS评估器找出最有威胁的目标
+    
+    Args:
+        game_data: 游戏数据对象
+    
+    Returns:
+        最有威胁的目标对象，如果评估失败则返回None
+    """
+    if not ifs_adapter:
+        logger.warning("IFS adapter not available")
+        return None
+    
+    try:
+        target, details = ifs_adapter.find_most_threatening(game_data)
+        
+        if target and details:
+            # 根据配置输出日志
+            if IFS_LOG_LEVEL == 'detailed':
+                log_ifs_details(target, details)
+            elif IFS_LOG_LEVEL == 'summary':
+                logger.info(
+                    f"[IFS] Selected target: ID={target.id}, "
+                    f"Score={details['comprehensive_threat_score']:.3f}, "
+                    f"Level={details['threat_level']}"
+                )
+            else:  # minimal
+                logger.info(f"[IFS] Selected target: ID={target.id}")
+            
+            return target
+        else:
+            logger.warning("IFS evaluation returned no result")
+            return None
+            
+    except Exception as e:
+        logger.error(f"IFS evaluation failed: {e}", exc_info=True)
+        return None
+
+
+def find_most_threatening_target(game_data: GameData) -> Optional[Target]:
+    """
+    找出最有威胁的目标（三级评估策略）
+    
+    评估优先级（根据配置）:
+    - ifs_first: IFS → GPT → 简单算法
+    - gpt_first: GPT → IFS → 简单算法
+    - simple_only: 仅使用简单算法
+    
+    Args:
+        game_data: 游戏数据对象
+    
+    Returns:
+        最有威胁的目标对象，如果没有目标则返回None
+    """
+    if not game_data.targets:
+        logger.warning("No targets found in game data")
+        return None
+    
+    # 策略：ifs_first（默认）
+    if THREAT_ASSESSMENT_STRATEGY == 'ifs_first':
+        # 【第一优先级】IFS评估
+        if ENABLE_IFS_ASSESSMENT and ifs_adapter:
+            result = find_most_threatening_target_with_ifs(game_data)
+            if result:
+                return result
+            logger.warning("IFS evaluation failed, falling back to GPT")
+        
+        # 【第二优先级】GPT-4o评估
+        if ENABLE_GPT_ASSESSMENT and client:
+            result = find_most_threatening_target_with_gpt(game_data)
+            if result:
+                return result
+            logger.warning("GPT evaluation failed, falling back to simple algorithm")
+        
+        # 【第三优先级】简单算法（保底）
+        return find_most_threatening_target_simple(game_data)
+    
+    # 策略：gpt_first
+    elif THREAT_ASSESSMENT_STRATEGY == 'gpt_first':
+        # 【第一优先级】GPT-4o评估
+        if ENABLE_GPT_ASSESSMENT and client:
+            result = find_most_threatening_target_with_gpt(game_data)
+            if result:
+                return result
+            logger.warning("GPT evaluation failed, falling back to IFS")
+        
+        # 【第二优先级】IFS评估
+        if ENABLE_IFS_ASSESSMENT and ifs_adapter:
+            result = find_most_threatening_target_with_ifs(game_data)
+            if result:
+                return result
+            logger.warning("IFS evaluation failed, falling back to simple algorithm")
+        
+        # 【第三优先级】简单算法（保底）
+        return find_most_threatening_target_simple(game_data)
+    
+    # 策略：simple_only
+    else:
+        return find_most_threatening_target_simple(game_data)
 

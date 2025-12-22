@@ -19,6 +19,9 @@ class Target:
     distance: float
     type: str  # "Tank" or "Soldier"
     position: Position
+    speed: float = 0.0          # 移动速度 (m/s)
+    direction: float = 0.0      # 移动方向 (0-360度)
+    velocity: Position = None   # 速度矢量（可选）
 
 
 @dataclass
@@ -35,12 +38,21 @@ class GameData:
         targets = []
         for target_data in data['targets']:
             target_pos = Position(**target_data['position'])
+            
+            # 解析速度矢量（如果存在）
+            velocity = None
+            if 'velocity' in target_data and target_data['velocity']:
+                velocity = Position(**target_data['velocity'])
+            
             target = Target(
                 id=target_data['id'],
                 angle=target_data['angle'],
                 distance=target_data['distance'],
                 type=target_data['type'],
-                position=target_pos
+                position=target_pos,
+                speed=target_data.get('speed', 0.0),       # 向后兼容
+                direction=target_data.get('direction', 0.0),  # 向后兼容
+                velocity=velocity
             )
             targets.append(target)
         
