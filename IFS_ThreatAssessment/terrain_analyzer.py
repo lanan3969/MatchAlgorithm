@@ -43,12 +43,21 @@ class TerrainAnalyzer:
             with open(file_path, 'r', encoding='utf-8-sig') as f:
                 data = json.load(f)
             
-            # 提取地形数据
-            if 'terrain' in data:
+            # 提取地形数据 - 兼容两种格式
+            # 格式1: 数据在 data['terrain'] 内部
+            # 格式2: 数据在根级别
+            if 'terrain' in data and isinstance(data['terrain'], dict):
                 terrain = data['terrain']
-                self.buildings = terrain.get('buildings', [])
-                self.obstacles = terrain.get('obstacles', [])
-                self.alleys = terrain.get('alleys', [])
+                # 如果terrain对象包含buildings/obstacles/alleys，则使用它们
+                if 'buildings' in terrain or 'obstacles' in terrain or 'alleys' in terrain:
+                    self.buildings = terrain.get('buildings', [])
+                    self.obstacles = terrain.get('obstacles', [])
+                    self.alleys = terrain.get('alleys', [])
+                else:
+                    # 否则从根级别获取
+                    self.buildings = data.get('buildings', [])
+                    self.obstacles = data.get('obstacles', [])
+                    self.alleys = data.get('alleys', [])
                 
                 # 设置地形边界
                 if 'terrain_info' in terrain:
@@ -59,6 +68,19 @@ class TerrainAnalyzer:
                         'min_z': info.get('min_z', -50),
                         'max_z': info.get('max_z', 50)
                     }
+                elif 'minBounds' in terrain and 'maxBounds' in terrain:
+                    # 新格式的地形边界
+                    self.terrain_bounds = {
+                        'min_x': terrain['minBounds'].get('x', -50),
+                        'max_x': terrain['maxBounds'].get('x', 50),
+                        'min_z': terrain['minBounds'].get('z', -50),
+                        'max_z': terrain['maxBounds'].get('z', 50)
+                    }
+            else:
+                # 如果没有terrain对象，直接从根级别获取
+                self.buildings = data.get('buildings', [])
+                self.obstacles = data.get('obstacles', [])
+                self.alleys = data.get('alleys', [])
             
             print(f"✓ 地形数据加载成功: {len(self.buildings)}栋建筑, "
                   f"{len(self.obstacles)}个障碍物, {len(self.alleys)}条巷道")
@@ -136,10 +158,22 @@ class TerrainAnalyzer:
         
         使用AABB（轴对齐包围盒）相交测试
         """
-        bx = building['x']
-        bz = building['z']
-        bw = building['width']
-        bd = building['depth']
+        # 兼容两种格式：
+        # 格式1: x, z, width, depth
+        # 格式2: position{x,z}, size{x,y}
+        if 'x' in building:
+            bx = building['x']
+            bz = building['z']
+            bw = building['width']
+            bd = building['depth']
+        elif 'position' in building:
+            bx = building['position']['x']
+            bz = building['position']['z']
+            # size.x 是宽度，size.y 是深度
+            bw = building['size']['x']
+            bd = building['size']['y']
+        else:
+            return False
         
         # 建筑物边界
         b_left = bx - bw / 2
@@ -155,10 +189,22 @@ class TerrainAnalyzer:
                                   x2: float, z2: float, 
                                   obstacle: Dict) -> bool:
         """检测线段是否与障碍物相交"""
-        ox = obstacle['x']
-        oz = obstacle['z']
-        ow = obstacle['width']
-        od = obstacle['depth']
+        # 兼容两种格式：
+        # 格式1: x, z, width, depth
+        # 格式2: position{x,z}, size{x,z}
+        if 'x' in obstacle:
+            ox = obstacle['x']
+            oz = obstacle['z']
+            ow = obstacle['width']
+            od = obstacle['depth']
+        elif 'position' in obstacle:
+            ox = obstacle['position']['x']
+            oz = obstacle['position']['z']
+            # size.x 是宽度，size.z 是深度
+            ow = obstacle['size']['x']
+            od = obstacle['size']['z']
+        else:
+            return False
         
         # 障碍物边界
         o_left = ox - ow / 2
@@ -242,26 +288,48 @@ class TerrainAnalyzer:
         building_area = 0.0
         
         for building in self.buildings:
-            bx, bz = building['x'], building['z']
+            # 兼容两种格式
+            if 'x' in building:
+                bx, bz = building['x'], building['z']
+                bw, bd = building['width'], building['depth']
+            elif 'position' in building:
+                bx = building['position']['x']
+                bz = building['position']['z']
+                bw = building['size']['x']
+                bd = building['size']['y']
+            else:
+                continue
+            
             distance = math.sqrt((px - bx)**2 + (pz - bz)**2)
             
             if distance < radius:
                 nearby_buildings.append(building)
                 # 累计建筑物占地面积
-                building_area += building['width'] * building['depth']
+                building_area += bw * bd
         
         # 统计附近的障碍物
         nearby_obstacles = []
         obstacle_area = 0.0
         
         for obstacle in self.obstacles:
-            ox, oz = obstacle['x'], obstacle['z']
+            # 兼容两种格式
+            if 'x' in obstacle:
+                ox, oz = obstacle['x'], obstacle['z']
+                ow, od = obstacle['width'], obstacle['depth']
+            elif 'position' in obstacle:
+                ox = obstacle['position']['x']
+                oz = obstacle['position']['z']
+                ow = obstacle['size']['x']
+                od = obstacle['size']['z']
+            else:
+                continue
+            
             distance = math.sqrt((px - ox)**2 + (pz - oz)**2)
             
             if distance < radius:
                 nearby_obstacles.append(obstacle)
                 # 累计障碍物占地面积
-                obstacle_area += obstacle['width'] * obstacle['depth']
+                obstacle_area += ow * od
         
         # 计算密度
         building_density = min(1.0, building_area / search_area)
@@ -301,9 +369,19 @@ class TerrainAnalyzer:
     def _point_in_alley(self, x: float, z: float, alley: Dict) -> bool:
         """检查点是否在巷道内（简化检测）"""
         # 巷道作为矩形区域
-        ax1, az1 = alley['start_x'], alley['start_z']
-        ax2, az2 = alley['end_x'], alley['end_z']
-        width = alley['width']
+        # 兼容两种格式：
+        # 格式1: start_x, start_z, end_x, end_z
+        # 格式2: start{x,z}, end{x,z}
+        if 'start_x' in alley:
+            ax1, az1 = alley['start_x'], alley['start_z']
+            ax2, az2 = alley['end_x'], alley['end_z']
+        elif 'start' in alley:
+            ax1, az1 = alley['start']['x'], alley['start']['z']
+            ax2, az2 = alley['end']['x'], alley['end']['z']
+        else:
+            return False
+        
+        width = alley.get('width', 0)
         
         # 计算点到线段的距离
         distance = self._point_to_segment_distance(x, z, ax1, az1, ax2, az2)
