@@ -214,8 +214,8 @@ def main():
                     threshold=THREAT_THRESHOLD
                 )
                 
-                # 转换为列表（按方向ID 0-7 排序）
-                intensities_list = [intensities_dict.get(i, 0) for i in range(8)]
+                # 转换为列表（按方向ID 0-15 排序）
+                intensities_list = [intensities_dict.get(i, 0) for i in range(16)]
                 
                 # 发送多马达震动信号
                 success = serial_handler.send_multi_vibration(

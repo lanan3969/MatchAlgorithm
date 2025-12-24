@@ -7,16 +7,24 @@ from direction_mapper import calculate_direction_angle, angle_to_motor_id
 
 logger = logging.getLogger(__name__)
 
-# 方向角度范围（每个方向覆盖45度）
+# 方向角度范围（每个方向覆盖22.5度）
 DIRECTION_RANGES = {
-    0: (337.5, 22.5),   # 正前方 (0° ±22.5°)
-    1: (22.5, 67.5),    # 前右 (45° ±22.5°)
-    2: (67.5, 112.5),   # 正右 (90° ±22.5°)
-    3: (112.5, 157.5), # 后右 (135° ±22.5°)
-    4: (157.5, 202.5), # 正后 (180° ±22.5°)
-    5: (202.5, 247.5), # 后左 (225° ±22.5°)
-    6: (247.5, 292.5), # 正左 (270° ±22.5°)
-    7: (292.5, 337.5)  # 前左 (315° ±22.5°)
+    0: (348.75, 11.25),    # 正北 (0° ±11.25°)
+    1: (11.25, 33.75),     # 北偏东 (22.5° ±11.25°)
+    2: (33.75, 56.25),     # 东北 (45° ±11.25°)
+    3: (56.25, 78.75),     # 东偏北 (67.5° ±11.25°)
+    4: (78.75, 101.25),    # 正东 (90° ±11.25°)
+    5: (101.25, 123.75),   # 东偏南 (112.5° ±11.25°)
+    6: (123.75, 146.25),   # 东南 (135° ±11.25°)
+    7: (146.25, 168.75),   # 南偏东 (157.5° ±11.25°)
+    8: (168.75, 191.25),   # 正南 (180° ±11.25°)
+    9: (191.25, 213.75),   # 南偏西 (202.5° ±11.25°)
+    10: (213.75, 236.25),  # 西南 (225° ±11.25°)
+    11: (236.25, 258.75),  # 西偏南 (247.5° ±11.25°)
+    12: (258.75, 281.25),  # 正西 (270° ±11.25°)
+    13: (281.25, 303.75),  # 西偏北 (292.5° ±11.25°)
+    14: (303.75, 326.25),  # 西北 (315° ±11.25°)
+    15: (326.25, 348.75)   # 北偏西 (337.5° ±11.25°)
 }
 
 # 类型威胁因子
@@ -151,18 +159,18 @@ def calculate_direction_threat_score(
     
     Args:
         game_data: 游戏数据对象
-        direction_id: 方向ID（0-7）
+        direction_id: 方向ID（0-15）
     
     Returns:
         该方向的综合威胁度分数
     """
-    if direction_id < 0 or direction_id > 7:
+    if direction_id < 0 or direction_id > 15:
         logger.warning(f"Invalid direction_id: {direction_id}")
         return 0.0
     
     # 获取该方向的角度范围
     range_start, range_end = DIRECTION_RANGES[direction_id]
-    direction_center_angle = direction_id * 45.0  # 方向中心角度
+    direction_center_angle = direction_id * 22.5  # 方向中心角度
     
     total_threat = 0.0
     target_count = 0
@@ -200,17 +208,17 @@ def calculate_all_directions_threat(
     game_data: GameData
 ) -> Dict[int, float]:
     """
-    计算所有八个方向的威胁度
+    计算所有16个方向的威胁度
     
     Args:
         game_data: 游戏数据对象
     
     Returns:
-        字典，键为方向ID（0-7），值为威胁度分数
+        字典，键为方向ID（0-15），值为威胁度分数
     """
     direction_threats = {}
     
-    for direction_id in range(8):
+    for direction_id in range(16):
         threat_score = calculate_direction_threat_score(game_data, direction_id)
         direction_threats[direction_id] = threat_score
     
@@ -233,7 +241,7 @@ def normalize_threat_to_intensity(
         threshold: 威胁度阈值，低于此值不震动
     
     Returns:
-        字典，键为方向ID（0-7），值为震动强度（0或min_intensity-max_intensity）
+        字典，键为方向ID（0-15），值为震动强度（0或min_intensity-max_intensity）
     
     说明：
         - 威胁度 < threshold：不震动（intensity = 0）
@@ -241,17 +249,17 @@ def normalize_threat_to_intensity(
         - 这样确保所有有效震动都能被用户感知到
     """
     if not threat_scores:
-        return {i: 0 for i in range(8)}
+        return {i: 0 for i in range(16)}
     
     # 找到最大威胁度（用于归一化）
     max_threat = max(threat_scores.values()) if threat_scores.values() else 0.0
     
     if max_threat <= 0:
-        return {i: 0 for i in range(8)}
+        return {i: 0 for i in range(16)}
     
     # 归一化并映射到震动强度
     intensities = {}
-    for direction_id in range(8):
+    for direction_id in range(16):
         threat = threat_scores.get(direction_id, 0.0)
         
         if threat < threshold:
@@ -267,10 +275,18 @@ def normalize_threat_to_intensity(
     logger.info("=" * 60)
     logger.info("🎯 Situation Awareness - Direction Threat Analysis")
     logger.info("=" * 60)
-    for direction_id in range(8):
+    
+    direction_names = [
+        "正北", "北偏东", "东北", "东偏北",
+        "正东", "东偏南", "东南", "南偏东",
+        "正南", "南偏西", "西南", "西偏南",
+        "正西", "西偏北", "西北", "北偏西"
+    ]
+    
+    for direction_id in range(16):
         threat = threat_scores.get(direction_id, 0.0)
         intensity = intensities.get(direction_id, 0)
-        direction_name = ["正前", "前右", "正右", "后右", "正后", "后左", "正左", "前左"][direction_id]
+        direction_name = direction_names[direction_id]
         logger.info(
             f"  Direction {direction_id} ({direction_name}): "
             f"Threat={threat:.4f}, Intensity={intensity}"

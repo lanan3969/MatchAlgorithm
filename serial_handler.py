@@ -128,7 +128,7 @@ class SerialHandler:
         同时发送多个马达的震动信号（用于态势感知模式）
         
         Args:
-            intensities: 8个马达的震动强度列表（0-255）
+            intensities: 16个马达的震动强度列表（0-255）
             duration: 震动持续时间（秒），默认3.0秒
             mode: 震动模式（0-3），默认0
         
@@ -139,22 +139,27 @@ class SerialHandler:
             logger.error("Serial port is not connected")
             return False
         
-        if len(intensities) != 8:
-            logger.error(f"Invalid intensities length: {len(intensities)}, expected 8")
+        if len(intensities) != 16:
+            logger.error(f"Invalid intensities length: {len(intensities)}, expected 16")
             return False
         
         try:
             logger.info("=" * 60)
-            logger.info("🌐 态势感知模式 - 多马达同时震动")
+            logger.info("🌐 态势感知模式 - 16方向多马达同时震动")
             logger.info(f"  震动模式: {mode}")
             logger.info(f"  持续时间: {duration}s")
             logger.info("  各方向震动强度:")
             
-            # 方向描述
-            directions = ["北(0)", "东北(1)", "东(2)", "东南(3)", "南(4)", "西南(5)", "西(6)", "西北(7)"]
+            # 方向描述（16个）
+            directions = [
+                "正北(0)", "北偏东(1)", "东北(2)", "东偏北(3)",
+                "正东(4)", "东偏南(5)", "东南(6)", "南偏东(7)",
+                "正南(8)", "南偏西(9)", "西南(10)", "西偏南(11)",
+                "正西(12)", "西偏北(13)", "西北(14)", "北偏西(15)"
+            ]
             
-            # 发送所有马达的启动信号
-            for motor_id in range(8):
+            # 发送所有16个马达的启动信号
+            for motor_id in range(16):
                 intensity = int(intensities[motor_id])
                 if intensity > 0:
                     start_message = f"{motor_id},{intensity},{mode}\n"
@@ -166,8 +171,8 @@ class SerialHandler:
             # 等待指定时长
             time.sleep(duration)
             
-            # 发送所有马达的停止信号
-            for motor_id in range(8):
+            # 发送所有16个马达的停止信号
+            for motor_id in range(16):
                 stop_message = f"{motor_id},0,0\n"
                 self.serial_connection.write(stop_message.encode('utf-8'))
             
