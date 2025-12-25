@@ -62,14 +62,22 @@ class CSVLogger:
                 'threat_enemy_x',
                 'threat_enemy_y',
                 'threat_enemy_z',
-                'north_threat',
-                'northeast_threat',
-                'east_threat',
-                'southeast_threat',
-                'south_threat',
-                'southwest_threat',
-                'west_threat',
-                'northwest_threat'
+                'north_threat',              # 0
+                'north_northeast_threat',    # 1
+                'northeast_threat',          # 2
+                'east_northeast_threat',     # 3
+                'east_threat',               # 4
+                'east_southeast_threat',     # 5
+                'southeast_threat',          # 6
+                'south_southeast_threat',    # 7
+                'south_threat',              # 8
+                'south_southwest_threat',    # 9
+                'southwest_threat',          # 10
+                'west_southwest_threat',     # 11
+                'west_threat',               # 12
+                'west_northwest_threat',     # 13
+                'northwest_threat',          # 14
+                'north_northwest_threat'     # 15
             ]
             self.csv_writer.writerow(headers)
             self.csv_file.flush()
@@ -96,7 +104,7 @@ class CSVLogger:
         Args:
             round_number: 轮次编号（如 "1-1"）
             most_threatening_target: 最具威胁的目标对象，如果没有则为None
-            direction_threats: 8个方向的威胁值（字典{0-7: float}或列表）
+            direction_threats: 16个方向的威胁值（字典{0-15: float}或列表）
         """
         if not self.csv_writer or not self.csv_file:
             logger.error("CSV logger is not initialized")
@@ -126,19 +134,19 @@ class CSVLogger:
             
             # 处理direction_threats（可以是字典或列表）
             if isinstance(direction_threats, dict):
-                # 如果是字典，按方向ID（0-7）排序提取值
-                direction_threats_list = [direction_threats.get(i, 0.0) for i in range(8)]
+                # 如果是字典，按方向ID（0-15）排序提取值
+                direction_threats_list = [direction_threats.get(i, 0.0) for i in range(16)]
             else:
                 # 如果是列表，直接使用
                 direction_threats_list = list(direction_threats)
             
-            # 确保有8个方向的威胁值
-            if len(direction_threats_list) < 8:
-                logger.warning(f"Expected 8 direction threats, got {len(direction_threats_list)}")
-                direction_threats_list = direction_threats_list + [0.0] * (8 - len(direction_threats_list))
+            # 确保有16个方向的威胁值
+            if len(direction_threats_list) < 16:
+                logger.warning(f"Expected 16 direction threats, got {len(direction_threats_list)}")
+                direction_threats_list = direction_threats_list + [0.0] * (16 - len(direction_threats_list))
             
             # 四舍五入威胁值到3位小数
-            direction_threats_rounded = [round(t, 3) for t in direction_threats_list[:8]]
+            direction_threats_rounded = [round(t, 3) for t in direction_threats_list[:16]]
             
             # 写入数据行
             row = [
@@ -197,7 +205,7 @@ class CSVLogger:
             包含该round数据的字典，如果round不存在则返回None
             字典包含：threat_enemy_id, threat_enemy_type, threat_enemy_distance,
                     threat_enemy_angle, threat_enemy_x, threat_enemy_y, threat_enemy_z,
-                    direction_threats (list of 8 floats)
+                    direction_threats (list of 16 floats)
         """
         if not self.file_path or not os.path.exists(self.file_path):
             logger.warning(f"CSV file does not exist: {self.file_path}")
@@ -208,16 +216,24 @@ class CSVLogger:
                 reader = csv.DictReader(f)
                 for row in reader:
                     if row.get('round') == round_number:
-                        # 提取8个方向的威胁值
+                        # 提取16个方向的威胁值
                         direction_threats = [
-                            float(row.get('north_threat', 0.0)),
-                            float(row.get('northeast_threat', 0.0)),
-                            float(row.get('east_threat', 0.0)),
-                            float(row.get('southeast_threat', 0.0)),
-                            float(row.get('south_threat', 0.0)),
-                            float(row.get('southwest_threat', 0.0)),
-                            float(row.get('west_threat', 0.0)),
-                            float(row.get('northwest_threat', 0.0))
+                            float(row.get('north_threat', 0.0)),              # 0
+                            float(row.get('north_northeast_threat', 0.0)),    # 1
+                            float(row.get('northeast_threat', 0.0)),          # 2
+                            float(row.get('east_northeast_threat', 0.0)),     # 3
+                            float(row.get('east_threat', 0.0)),               # 4
+                            float(row.get('east_southeast_threat', 0.0)),     # 5
+                            float(row.get('southeast_threat', 0.0)),          # 6
+                            float(row.get('south_southeast_threat', 0.0)),    # 7
+                            float(row.get('south_threat', 0.0)),              # 8
+                            float(row.get('south_southwest_threat', 0.0)),    # 9
+                            float(row.get('southwest_threat', 0.0)),          # 10
+                            float(row.get('west_southwest_threat', 0.0)),     # 11
+                            float(row.get('west_threat', 0.0)),               # 12
+                            float(row.get('west_northwest_threat', 0.0)),     # 13
+                            float(row.get('northwest_threat', 0.0)),          # 14
+                            float(row.get('north_northwest_threat', 0.0))     # 15
                         ]
                         
                         # 构建返回数据

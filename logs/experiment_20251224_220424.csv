@@ -1,0 +1,2 @@
+timestamp,round,threat_enemy_id,threat_enemy_type,threat_enemy_distance,threat_enemy_angle,threat_enemy_x,threat_enemy_y,threat_enemy_z,north_threat,northeast_threat,east_threat,southeast_threat,south_threat,southwest_threat,west_threat,northwest_threat
+2025-12-24 22:05:08.928,7,11,Soldier,28.58,115.4,30.23,17.0,-6.87,0.0,0.014,0.02,0.0,0.056,0.029,0.032,0.008

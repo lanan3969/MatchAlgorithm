@@ -1,0 +1,4 @@
+timestamp,round,threat_enemy_id,threat_enemy_type,threat_enemy_distance,threat_enemy_angle,threat_enemy_x,threat_enemy_y,threat_enemy_z,north_threat,northeast_threat,east_threat,southeast_threat,south_threat,southwest_threat,west_threat,northwest_threat
+2025-12-24 21:09:17.223,1,4,Soldier,30.19,-119.96,-22.28,17.0,-12.84,0.0,0.024,0.0,0.0,0.0,0.011,0.0,0.004
+2025-12-24 21:09:44.024,2,5,Drone,29.31,120.49,21.26,17.0,-12.52,0.0,0.0,0.0,0.0,0.0,0.022,0.014,0.0
+2025-12-24 21:10:20.621,6,14,Soldier,18.77,-160.96,-3.3,17.0,-9.55,0.06,0.006,0.024,0.023,0.0,0.0,0.026,0.018

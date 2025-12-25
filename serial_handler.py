@@ -111,8 +111,8 @@ class SerialHandler:
             # 第二步：等待指定时长
             time.sleep(duration)
             
-            # 第三步：发送停止信号
-            stop_message = f"{vibrator_id},0,0\n"
+            # 第三步：发送停止信号（格式：stop）
+            stop_message = "stop\n"
             bytes_written_stop = self.serial_connection.write(stop_message.encode('utf-8'))
             logger.info(f"✓ Vibration STOP signal sent")
             logger.info(f"  Message: {stop_message.strip()}")
@@ -143,46 +143,91 @@ class SerialHandler:
             logger.error(f"Invalid intensities length: {len(intensities)}, expected 16")
             return False
         
+        # 方向描述（16个）
+        directions = [
+            "正北(0)", "北偏东(1)", "东北(2)", "东偏北(3)",
+            "正东(4)", "东偏南(5)", "东南(6)", "南偏东(7)",
+            "正南(8)", "南偏西(9)", "西南(10)", "西偏南(11)",
+            "正西(12)", "西偏北(13)", "西北(14)", "北偏西(15)"
+        ]
+        
+        # 记录已启动的马达，确保停止时能正确记录
+        started_motors = []
+        
         try:
             logger.info("=" * 60)
             logger.info("🌐 态势感知模式 - 16方向多马达同时震动")
+            
+            # 第一步：先停止所有马达，确保初始状态干净（解决残留震动问题）
+            logger.info("🛑 预先停止所有马达...")
+            stop_message = "stop\n"
+            self.serial_connection.write(stop_message.encode('utf-8'))
+            self.serial_connection.flush()
+            time.sleep(0.2)  # 等待所有马达停止
+            logger.info("✓ 所有马达已停止（发送 stop 命令）")
+            
             logger.info(f"  震动模式: {mode}")
             logger.info(f"  持续时间: {duration}s")
             logger.info("  各方向震动强度:")
             
-            # 方向描述（16个）
-            directions = [
-                "正北(0)", "北偏东(1)", "东北(2)", "东偏北(3)",
-                "正东(4)", "东偏南(5)", "东南(6)", "南偏东(7)",
-                "正南(8)", "南偏西(9)", "西南(10)", "西偏南(11)",
-                "正西(12)", "西偏北(13)", "西北(14)", "北偏西(15)"
-            ]
-            
-            # 发送所有16个马达的启动信号
+            # 第二步：发送所有16个马达的启动信号（格式：motorID,intensity,mode）
             for motor_id in range(16):
                 intensity = int(intensities[motor_id])
                 if intensity > 0:
                     start_message = f"{motor_id},{intensity},{mode}\n"
-                    self.serial_connection.write(start_message.encode('utf-8'))
-                    logger.info(f"    {directions[motor_id]}: 强度 {intensity}")
+                    bytes_written = self.serial_connection.write(start_message.encode('utf-8'))
+                    self.serial_connection.flush()  # 每个启动信号后立即刷新
+                    started_motors.append(motor_id)
+                    logger.info(f"    {directions[motor_id]}: 强度 {intensity} (已发送 {bytes_written} 字节)")
+                    time.sleep(0.05)  # 每个启动信号之间延迟50毫秒
             
             logger.info("─" * 60)
+            logger.info(f"✓ 已启动 {len(started_motors)} 个马达的震动")
             
             # 等待指定时长
             time.sleep(duration)
             
-            # 发送所有16个马达的停止信号
-            for motor_id in range(16):
-                stop_message = f"{motor_id},0,0\n"
-                self.serial_connection.write(stop_message.encode('utf-8'))
-            
-            logger.info("✓ 态势感知震动完成")
-            logger.info("=" * 60)
-            return True
-            
         except Exception as e:
-            logger.error(f"Failed to send multi-motor vibration signals: {e}")
-            return False
+            logger.error(f"Error during vibration period: {e}")
+        finally:
+            # 无论是否发生异常，都要发送停止信号
+            try:
+                logger.info("─" * 60)
+                logger.info("🛑 发送停止信号...")
+                
+                # 优先停止之前启动的马达，然后停止所有其他马达
+                stopped_count = 0
+                
+                # 停止所有马达（发送 stop 命令，重复3次确保停止）
+                logger.info(f"  停止所有马达（已启动: {started_motors}）")
+                stopped_count = len(started_motors)
+                
+                for attempt in range(3):  # 重复发送3次
+                    stop_message = "stop\n"
+                    bytes_written = self.serial_connection.write(stop_message.encode('utf-8'))
+                    self.serial_connection.flush()  # 立即刷新
+                    logger.info(f"  第 {attempt + 1} 次发送停止信号: {stop_message.strip()} ({bytes_written} 字节)")
+                    
+                    # 每次停止命令之间等待
+                    if attempt < 2:
+                        time.sleep(0.2)  # 每轮之间等待200毫秒
+                
+                # 最后延迟，确保停止信号完全处理
+                logger.info("  最后确认停止...")
+                time.sleep(0.5)  # 增加到500毫秒，确保硬件完全停止
+                
+                logger.info(f"✓ 已发送停止信号到所有16个马达（其中 {stopped_count} 个之前正在震动）")
+                logger.info("✓ 态势感知震动完成")
+                logger.info("=" * 60)
+            except Exception as e:
+                logger.error(f"Failed to send stop signals: {e}")
+                # 即使停止信号发送失败，也尝试刷新缓冲区
+                try:
+                    self.serial_connection.flush()
+                except:
+                    pass
+        
+        return True
     
     def is_connected(self) -> bool:
         """检查串口是否已连接"""
@@ -228,7 +273,7 @@ class SerialHandler:
                 logger.info(f"{'─' * 60}")
                 
                 for mode in range(4):  # 测试4种模式：0, 1, 2, 3
-                    # 启动震动（发送格式：motorID,intensity,mode）
+                    # 启动震动（格式：motorID,intensity,mode）
                     start_message = f"{vibrator_id},{255},{mode}\n"
                     self.serial_connection.write(start_message.encode('utf-8'))
                     logger.info(f"✓ Vibrator {vibrator_id} Mode {mode} ({mode_descriptions[mode]}): START - {start_message.strip()}")
@@ -236,8 +281,8 @@ class SerialHandler:
                     # 等待指定时长
                     time.sleep(test_duration)
                     
-                    # 停止震动
-                    stop_message = f"{vibrator_id},0,0\n"
+                    # 停止震动（格式：stop）
+                    stop_message = "stop\n"
                     self.serial_connection.write(stop_message.encode('utf-8'))
                     logger.info(f"✓ Vibrator {vibrator_id} Mode {mode}: STOP - {stop_message.strip()}")
                     
