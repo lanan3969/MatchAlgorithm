@@ -1,4 +1,4 @@
-"""态势感知模块 - 计算八个方向的威胁度"""
+"""态势感知模块 - 计算十六个方向的威胁度"""
 import math
 import logging
 from typing import Dict, Tuple, List
@@ -6,6 +6,25 @@ from models import Target, GameData, Position
 from direction_mapper import calculate_direction_angle, angle_to_motor_id
 
 logger = logging.getLogger(__name__)
+
+# 导入IFS威胁评估器
+ifs_adapter_for_direction = None
+try:
+    from threat_analyzer_ifs import IFSThreatAnalyzerAdapter
+    try:
+        from config import TERRAIN_DATA_PATH, ENABLE_TERRAIN_ANALYSIS
+        import os
+        terrain_path = None
+        if ENABLE_TERRAIN_ANALYSIS and os.path.exists(TERRAIN_DATA_PATH):
+            terrain_path = TERRAIN_DATA_PATH
+        ifs_adapter_for_direction = IFSThreatAnalyzerAdapter(terrain_path)
+        logger.info("✓ IFS adapter for direction threats initialized")
+    except Exception as e:
+        logger.warning(f"IFS adapter initialization failed: {e}, using fallback method")
+        ifs_adapter_for_direction = None
+except ImportError:
+    ifs_adapter_for_direction = None
+    logger.warning("IFS module not available, using simple algorithm for direction threats")
 
 # 方向角度范围（每个方向覆盖22.5度）
 DIRECTION_RANGES = {
@@ -80,13 +99,13 @@ def is_angle_in_range(angle: float, range_start: float, range_end: float) -> boo
         return angle >= range_start or angle < range_end
 
 
-def calculate_target_threat_score(
+def calculate_target_threat_score_simple(
     target: Target,
     player_pos: Position,
     direction_angle: float
 ) -> float:
     """
-    计算单个目标对特定方向的威胁度
+    使用简单算法计算单个目标对特定方向的威胁度（降级方案）
     
     Args:
         target: 目标对象
@@ -150,9 +169,96 @@ def calculate_target_threat_score(
     return threat_score
 
 
+def calculate_target_threat_score_with_ifs(
+    target: Target,
+    player_pos: Position,
+    direction_angle: float
+) -> float:
+    """
+    使用IFS方法计算单个目标对特定方向的威胁度
+    
+    Args:
+        target: 目标对象
+        player_pos: 玩家位置
+        direction_angle: 目标方向的角度（0-360度）
+    
+    Returns:
+        威胁度分数
+    """
+    if not ifs_adapter_for_direction:
+        # 降级到简单算法
+        return calculate_target_threat_score_simple(target, player_pos, direction_angle)
+    
+    try:
+        # 创建临时GameData对象（只包含当前目标）
+        game_data = GameData(
+            round="temp",
+            playerPosition=player_pos,
+            targets=[target],
+            situationAwareness=False
+        )
+        
+        # 使用IFS评估器
+        result_target, result_details = ifs_adapter_for_direction.find_most_threatening(game_data)
+        
+        if result_details:
+            # 提取综合威胁得分
+            threat_score = result_details['comprehensive_threat_score']
+            
+            # 应用角度衰减因子（目标偏离方向中心时降低威胁度）
+            target_angle = calculate_direction_angle(player_pos, target.position)
+            angle_offset = abs(target_angle - direction_angle)
+            if angle_offset > 180:
+                angle_offset = 360 - angle_offset
+            
+            # 角度衰减：偏离11.25度（方向范围的一半）时开始衰减
+            angle_decay = max(0.1, 1.0 - (angle_offset / 22.5))
+            
+            final_score = threat_score * angle_decay
+            
+            logger.debug(
+                f"Target {target.id} IFS threat to direction {direction_angle:.1f}°: "
+                f"base_score={threat_score:.4f}, angle_offset={angle_offset:.1f}°, "
+                f"angle_decay={angle_decay:.3f}, final_score={final_score:.4f}"
+            )
+            
+            return final_score
+        else:
+            return calculate_target_threat_score_simple(target, player_pos, direction_angle)
+            
+    except Exception as e:
+        logger.warning(f"IFS evaluation failed for direction threat: {e}")
+        return calculate_target_threat_score_simple(target, player_pos, direction_angle)
+
+
+def calculate_target_threat_score(
+    target: Target,
+    player_pos: Position,
+    direction_angle: float,
+    use_ifs: bool = True
+) -> float:
+    """
+    计算单个目标对特定方向的威胁度（统一入口）
+    
+    Args:
+        target: 目标对象
+        player_pos: 玩家位置
+        direction_angle: 目标方向的角度（0-360度）
+        use_ifs: 是否使用IFS方法，默认True
+    
+    Returns:
+        威胁度分数
+    """
+    if use_ifs and ifs_adapter_for_direction:
+        return calculate_target_threat_score_with_ifs(target, player_pos, direction_angle)
+    else:
+        return calculate_target_threat_score_simple(target, player_pos, direction_angle)
+
+
 def calculate_direction_threat_score(
     game_data: GameData,
-    direction_id: int
+    direction_id: int,
+    use_ifs: bool = True
 ) -> float:
     """
     计算特定方向的综合威胁度
@@ -160,6 +266,7 @@ def calculate_direction_threat_score(
     Args:
         game_data: 游戏数据对象
         direction_id: 方向ID（0-15）
+        use_ifs: 是否使用IFS方法，默认True
     
     Returns:
         该方向的综合威胁度分数
@@ -186,7 +293,8 @@ def calculate_direction_threat_score(
             threat_score = calculate_target_threat_score(
                 target,
                 game_data.playerPosition,
-                direction_center_angle
+                direction_center_angle,
+                use_ifs=use_ifs
             )
             total_threat += threat_score
     

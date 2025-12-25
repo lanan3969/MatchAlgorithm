@@ -1,0 +1,789 @@
+{
+  "metadata": {
+    "test_date": "2025-12-25 15:47:53",
+    "total_maps": 20,
+    "evaluation_method": "IFS (Intuitionistic Fuzzy Set)"
+  },
+  "results": [
+    {
+      "imageId": "type1_encirclement_01",
+      "tacticType": "encirclement",
+      "tacticNameCN": "包围",
+      "enemyCount": 5,
+      "most_threatening_enemy": {
+        "id": 3,
+        "type": "Drone",
+        "distance": 21.61,
+        "angle": 295.54,
+        "position": {
+          "x": -19.49,
+          "z": 9.32
+        }
+      },
+      "most_threatening_direction": {
+        "id": 13,
+        "name": "西偏北(292.5°)",
+        "threat_score": 0.574
+      },
+      "direction_threats": {
+        "0": 0.0,
+        "1": 0.1651,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.2413,
+        "6": 0.0,
+        "7": 0.2171,
+        "8": 0.0,
+        "9": 0.0,
+        "10": 0.3921,
+        "11": 0.0,
+        "12": 0.0,
+        "13": 0.574,
+        "14": 0.0,
+        "15": 0.0
+      }
+    },
+    {
+      "imageId": "type1_pincer_02",
+      "tacticType": "pincer",
+      "tacticNameCN": "钳形攻势",
+      "enemyCount": 5,
+      "most_threatening_enemy": {
+        "id": 5,
+        "type": "Drone",
+        "distance": 24.67,
+        "angle": 120.49,
+        "position": {
+          "x": 21.26,
+          "z": -12.52
+        }
+      },
+      "most_threatening_direction": {
+        "id": 5,
+        "name": "东偏南(112.5°)",
+        "threat_score": 0.73
+      },
+      "direction_threats": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.73,
+        "6": 0.3803,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0,
+        "10": 0.0,
+        "11": 0.2297,
+        "12": 0.0,
+        "13": 0.3843,
+        "14": 0.0,
+        "15": 0.0
+      }
+    },
+    {
+      "imageId": "type1_ambush_03",
+      "tacticType": "ambush",
+      "tacticNameCN": "伏击",
+      "enemyCount": 5,
+      "most_threatening_enemy": {
+        "id": 3,
+        "type": "Drone",
+        "distance": 24.98,
+        "angle": 359.07,
+        "position": {
+          "x": -0.41,
+          "z": 24.98
+        }
+      },
+      "most_threatening_direction": {
+        "id": 0,
+        "name": "正北(0°)",
+        "threat_score": 0.6227
+      },
+      "direction_threats": {
+        "0": 0.6227,
+        "1": 0.0957,
+        "2": 0.1848,
+        "3": 0.3927,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0,
+        "10": 0.0,
+        "11": 0.0,
+        "12": 0.0,
+        "13": 0.0,
+        "14": 0.0,
+        "15": 0.0
+      }
+    },
+    {
+      "imageId": "type1_retreat_04",
+      "tacticType": "retreat",
+      "tacticNameCN": "撤退",
+      "enemyCount": 5,
+      "most_threatening_enemy": {
+        "id": 4,
+        "type": "Soldier",
+        "distance": 25.72,
+        "angle": 240.04,
+        "position": {
+          "x": -22.28,
+          "z": -12.84
+        }
+      },
+      "most_threatening_direction": {
+        "id": 11,
+        "name": "西偏南(247.5°)",
+        "threat_score": 0.3031
+      },
+      "direction_threats": {
+        "0": 0.0,
+        "1": 0.2822,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0512,
+        "6": 0.0,
+        "7": 0.0242,
+        "8": 0.0,
+        "9": 0.0,
+        "10": 0.0,
+        "11": 0.3031,
+        "12": 0.0,
+        "13": 0.2004,
+        "14": 0.0,
+        "15": 0.0
+      }
+    },
+    {
+      "imageId": "type1_frontal_assault_05",
+      "tacticType": "frontal_assault",
+      "tacticNameCN": "正面突击",
+      "enemyCount": 5,
+      "most_threatening_enemy": {
+        "id": 2,
+        "type": "Soldier",
+        "distance": 15.75,
+        "angle": 99.92,
+        "position": {
+          "x": 15.51,
+          "z": -2.71
+        }
+      },
+      "most_threatening_direction": {
+        "id": 4,
+        "name": "正东(90°)",
+        "threat_score": 0.5283
+      },
+      "direction_threats": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.1704,
+        "3": 0.0,
+        "4": 0.5283,
+        "5": 0.4238,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0,
+        "10": 0.0,
+        "11": 0.0,
+        "12": 0.0,
+        "13": 0.0,
+        "14": 0.0,
+        "15": 0.0
+      }
+    },
+    {
+      "imageId": "type1_flanking_06",
+      "tacticType": "flanking",
+      "tacticNameCN": "侧翼包抄",
+      "enemyCount": 5,
+      "most_threatening_enemy": {
+        "id": 2,
+        "type": "Soldier",
+        "distance": 22.96,
+        "angle": 141.33,
+        "position": {
+          "x": 14.35,
+          "z": -17.93
+        }
+      },
+      "most_threatening_direction": {
+        "id": 8,
+        "name": "正南(180°)",
+        "threat_score": 0.8467
+      },
+      "direction_threats": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.5764,
+        "7": 0.0,
+        "8": 0.8467,
+        "9": 0.6007,
+        "10": 0.0,
+        "11": 0.0,
+        "12": 0.0,
+        "13": 0.0,
+        "14": 0.0,
+        "15": 0.0
+      }
+    },
+    {
+      "imageId": "type1_defensive_07",
+      "tacticType": "defensive",
+      "tacticNameCN": "防御阵型",
+      "enemyCount": 5,
+      "most_threatening_enemy": {
+        "id": 4,
+        "type": "Soldier",
+        "distance": 29.43,
+        "angle": 60.12,
+        "position": {
+          "x": 25.52,
+          "z": 14.66
+        }
+      },
+      "most_threatening_direction": {
+        "id": 3,
+        "name": "东偏北(67.5°)",
+        "threat_score": 0.1706
+      },
+      "direction_threats": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.1706,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0636,
+        "8": 0.0,
+        "9": 0.0,
+        "10": 0.1111,
+        "11": 0.1513,
+        "12": 0.0,
+        "13": 0.1267,
+        "14": 0.0,
+        "15": 0.0
+      }
+    },
+    {
+      "imageId": "type1_guerrilla_08",
+      "tacticType": "guerrilla",
+      "tacticNameCN": "游击骚扰",
+      "enemyCount": 5,
+      "most_threatening_enemy": {
+        "id": 3,
+        "type": "Soldier",
+        "distance": 23.23,
+        "angle": 74.69,
+        "position": {
+          "x": 22.41,
+          "z": 6.13
+        }
+      },
+      "most_threatening_direction": {
+        "id": 13,
+        "name": "西偏北(292.5°)",
+        "threat_score": 0.8541
+      },
+      "direction_threats": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.5499,
+        "4": 0.0,
+        "5": 0.2584,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0,
+        "10": 0.0,
+        "11": 0.0,
+        "12": 0.0,
+        "13": 0.8541,
+        "14": 0.0,
+        "15": 0.0
+      }
+    },
+    {
+      "imageId": "type1_pursuit_09",
+      "tacticType": "pursuit",
+      "tacticNameCN": "追击",
+      "enemyCount": 5,
+      "most_threatening_enemy": {
+        "id": 5,
+        "type": "Soldier",
+        "distance": 21.25,
+        "angle": 300.16,
+        "position": {
+          "x": -18.37,
+          "z": 10.68
+        }
+      },
+      "most_threatening_direction": {
+        "id": 11,
+        "name": "西偏南(247.5°)",
+        "threat_score": 1.27
+      },
+      "direction_threats": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0,
+        "10": 0.0,
+        "11": 1.27,
+        "12": 0.0991,
+        "13": 0.504,
+        "14": 0.0,
+        "15": 0.0
+      }
+    },
+    {
+      "imageId": "type1_dispersed_10",
+      "tacticType": "dispersed",
+      "tacticNameCN": "分散机动",
+      "enemyCount": 5,
+      "most_threatening_enemy": {
+        "id": 3,
+        "type": "Soldier",
+        "distance": 24.96,
+        "angle": 310.98,
+        "position": {
+          "x": -18.84,
+          "z": 16.37
+        }
+      },
+      "most_threatening_direction": {
+        "id": 14,
+        "name": "西北(315°)",
+        "threat_score": 0.3257
+      },
+      "direction_threats": {
+        "0": -0.0218,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": -0.0601,
+        "6": 0.0038,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0,
+        "10": 0.0045,
+        "11": 0.0,
+        "12": 0.0,
+        "13": 0.0,
+        "14": 0.3257,
+        "15": 0.0
+      }
+    },
+    {
+      "imageId": "type2_encirclement_01",
+      "tacticType": "encirclement",
+      "tacticNameCN": "包围",
+      "enemyCount": 20,
+      "most_threatening_enemy": {
+        "id": 14,
+        "type": "Soldier",
+        "distance": 10.1,
+        "angle": 199.04,
+        "position": {
+          "x": -3.3,
+          "z": -9.55
+        }
+      },
+      "most_threatening_direction": {
+        "id": 9,
+        "name": "南偏西(202.5°)",
+        "threat_score": 1.6952
+      },
+      "direction_threats": {
+        "0": 1.4651,
+        "1": 0.5556,
+        "2": 0.7045,
+        "3": 0.8192,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.9091,
+        "7": 0.6191,
+        "8": 0.1809,
+        "9": 1.6952,
+        "10": 0.1697,
+        "11": 0.0,
+        "12": 0.2516,
+        "13": 0.0,
+        "14": 0.8294,
+        "15": 0.3668
+      }
+    },
+    {
+      "imageId": "type2_pincer_02",
+      "tacticType": "pincer",
+      "tacticNameCN": "钳形攻势",
+      "enemyCount": 20,
+      "most_threatening_enemy": {
+        "id": 1,
+        "type": "Soldier",
+        "distance": 20.6,
+        "angle": 278.65,
+        "position": {
+          "x": -20.36,
+          "z": 3.1
+        }
+      },
+      "most_threatening_direction": {
+        "id": 5,
+        "name": "东偏南(112.5°)",
+        "threat_score": 3.3878
+      },
+      "direction_threats": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.4092,
+        "3": 0.3201,
+        "4": 0.4374,
+        "5": 3.3878,
+        "6": 0.5605,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0,
+        "10": 0.0,
+        "11": 0.6999,
+        "12": 2.8128,
+        "13": 0.5713,
+        "14": 0.0,
+        "15": 0.1145
+      }
+    },
+    {
+      "imageId": "type2_ambush_03",
+      "tacticType": "ambush",
+      "tacticNameCN": "伏击",
+      "enemyCount": 20,
+      "most_threatening_enemy": {
+        "id": 10,
+        "type": "Soldier",
+        "distance": 20.35,
+        "angle": 193.54,
+        "position": {
+          "x": -4.76,
+          "z": -19.79
+        }
+      },
+      "most_threatening_direction": {
+        "id": 8,
+        "name": "正南(180°)",
+        "threat_score": 2.7958
+      },
+      "direction_threats": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.6881,
+        "7": 1.2954,
+        "8": 2.7958,
+        "9": 1.3632,
+        "10": 0.4401,
+        "11": 0.0,
+        "12": 0.0,
+        "13": 0.0,
+        "14": 0.0,
+        "15": 0.0
+      }
+    },
+    {
+      "imageId": "type2_retreat_04",
+      "tacticType": "retreat",
+      "tacticNameCN": "撤退",
+      "enemyCount": 20,
+      "most_threatening_enemy": {
+        "id": 12,
+        "type": "Drone",
+        "distance": 24.74,
+        "angle": 297.94,
+        "position": {
+          "x": -21.85,
+          "z": 11.59
+        }
+      },
+      "most_threatening_direction": {
+        "id": 13,
+        "name": "西偏北(292.5°)",
+        "threat_score": 0.6603
+      },
+      "direction_threats": {
+        "0": 0.0,
+        "1": -0.0488,
+        "2": 0.0261,
+        "3": 0.0121,
+        "4": 0.5021,
+        "5": 0.2377,
+        "6": 0.0419,
+        "7": 0.1469,
+        "8": 0.0,
+        "9": 0.0659,
+        "10": 0.1596,
+        "11": 0.0,
+        "12": 0.0,
+        "13": 0.6603,
+        "14": 0.1662,
+        "15": 0.4078
+      }
+    },
+    {
+      "imageId": "type2_frontal_assault_05",
+      "tacticType": "frontal_assault",
+      "tacticNameCN": "正面突击",
+      "enemyCount": 20,
+      "most_threatening_enemy": {
+        "id": 15,
+        "type": "Soldier",
+        "distance": 20.01,
+        "angle": 50.03,
+        "position": {
+          "x": 15.34,
+          "z": 12.85
+        }
+      },
+      "most_threatening_direction": {
+        "id": 5,
+        "name": "东偏南(112.5°)",
+        "threat_score": 2.4179
+      },
+      "direction_threats": {
+        "0": 0.2835,
+        "1": 0.557,
+        "2": 2.0327,
+        "3": 0.1146,
+        "4": 1.5511,
+        "5": 2.4179,
+        "6": 0.4759,
+        "7": 0.6088,
+        "8": 0.0,
+        "9": 0.0782,
+        "10": 0.0,
+        "11": 0.0,
+        "12": 0.0,
+        "13": 0.3753,
+        "14": 0.0,
+        "15": 0.1322
+      }
+    },
+    {
+      "imageId": "type2_flanking_06",
+      "tacticType": "flanking",
+      "tacticNameCN": "侧翼包抄",
+      "enemyCount": 20,
+      "most_threatening_enemy": {
+        "id": 12,
+        "type": "Soldier",
+        "distance": 11.28,
+        "angle": 18.41,
+        "position": {
+          "x": 3.56,
+          "z": 10.71
+        }
+      },
+      "most_threatening_direction": {
+        "id": 0,
+        "name": "正北(0°)",
+        "threat_score": 2.5035
+      },
+      "direction_threats": {
+        "0": 2.5035,
+        "1": 2.0489,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0,
+        "10": 0.0,
+        "11": 0.0,
+        "12": 0.0,
+        "13": 0.4958,
+        "14": 2.2013,
+        "15": 2.324
+      }
+    },
+    {
+      "imageId": "type2_defensive_07",
+      "tacticType": "defensive",
+      "tacticNameCN": "防御阵型",
+      "enemyCount": 20,
+      "most_threatening_enemy": {
+        "id": 20,
+        "type": "Soldier",
+        "distance": 12.08,
+        "angle": 123.34,
+        "position": {
+          "x": 10.09,
+          "z": -6.64
+        }
+      },
+      "most_threatening_direction": {
+        "id": 5,
+        "name": "东偏南(112.5°)",
+        "threat_score": 0.7471
+      },
+      "direction_threats": {
+        "0": 0.2488,
+        "1": 0.0,
+        "2": 0.1268,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.7471,
+        "6": 0.0144,
+        "7": 0.6144,
+        "8": 0.5285,
+        "9": 0.1867,
+        "10": 0.0957,
+        "11": 0.6196,
+        "12": 0.4613,
+        "13": 0.5357,
+        "14": 0.0,
+        "15": 0.0
+      }
+    },
+    {
+      "imageId": "type2_guerrilla_08",
+      "tacticType": "guerrilla",
+      "tacticNameCN": "游击骚扰",
+      "enemyCount": 20,
+      "most_threatening_enemy": {
+        "id": 13,
+        "type": "Soldier",
+        "distance": 14.64,
+        "angle": 139.88,
+        "position": {
+          "x": 9.44,
+          "z": -11.2
+        }
+      },
+      "most_threatening_direction": {
+        "id": 11,
+        "name": "西偏南(247.5°)",
+        "threat_score": 1.0394
+      },
+      "direction_threats": {
+        "0": 0.0,
+        "1": 0.1483,
+        "2": 0.0,
+        "3": 0.0095,
+        "4": 0.2014,
+        "5": 0.0279,
+        "6": 1.0287,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0533,
+        "10": 1.0317,
+        "11": 1.0394,
+        "12": 0.0,
+        "13": 0.2128,
+        "14": 0.0885,
+        "15": 0.0
+      }
+    },
+    {
+      "imageId": "type2_pursuit_09",
+      "tacticType": "pursuit",
+      "tacticNameCN": "追击",
+      "enemyCount": 20,
+      "most_threatening_enemy": {
+        "id": 5,
+        "type": "Soldier",
+        "distance": 23.4,
+        "angle": 300.75,
+        "position": {
+          "x": -20.11,
+          "z": 11.96
+        }
+      },
+      "most_threatening_direction": {
+        "id": 12,
+        "name": "正西(270°)",
+        "threat_score": 3.2276
+      },
+      "direction_threats": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.2561,
+        "9": 0.4862,
+        "10": 1.1263,
+        "11": 1.918,
+        "12": 3.2276,
+        "13": 2.1853,
+        "14": 0.0109,
+        "15": 0.0
+      }
+    },
+    {
+      "imageId": "type2_dispersed_10",
+      "tacticType": "dispersed",
+      "tacticNameCN": "分散机动",
+      "enemyCount": 20,
+      "most_threatening_enemy": {
+        "id": 19,
+        "type": "Soldier",
+        "distance": 21.13,
+        "angle": 151.99,
+        "position": {
+          "x": 9.93,
+          "z": -18.66
+        }
+      },
+      "most_threatening_direction": {
+        "id": 7,
+        "name": "南偏东(157.5°)",
+        "threat_score": 0.9854
+      },
+      "direction_threats": {
+        "0": 0.0,
+        "1": 0.1884,
+        "2": 0.7297,
+        "3": -0.0046,
+        "4": 0.0,
+        "5": 0.0316,
+        "6": 0.5471,
+        "7": 0.9854,
+        "8": 0.1327,
+        "9": 0.4631,
+        "10": 0.3148,
+        "11": 0.5669,
+        "12": -0.0875,
+        "13": -0.0433,
+        "14": -0.0255,
+        "15": 0.0
+      }
+    }
+  ]
+}
